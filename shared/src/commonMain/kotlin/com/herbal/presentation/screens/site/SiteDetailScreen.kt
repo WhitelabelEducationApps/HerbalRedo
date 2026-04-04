@@ -104,6 +104,7 @@ fun SiteDetailScreen(
             SiteDetailContent(
                 site = site,
                 localizedCountries = localizedGroupName ?: "",
+                appConfig = appConfig,
                 modifier = Modifier.padding(paddingValues)
             )
         }
@@ -114,6 +115,7 @@ fun SiteDetailScreen(
 private fun SiteDetailContent(
     site: HeritageSite,
     localizedCountries: String,
+    appConfig: AppConfig,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -144,22 +146,24 @@ private fun SiteDetailContent(
             Spacer(modifier = Modifier.height(16.dp))
         }
 
-        site.location?.let {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    Icons.Default.LocationOn,
-                    contentDescription = null,
-                    modifier = Modifier.size(20.dp),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+        if (appConfig.enableMap) {
+            site.location?.let {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        Icons.Default.LocationOn,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
             }
-            Spacer(modifier = Modifier.height(8.dp))
         }
 
         if (localizedCountries.isNotBlank()) {
