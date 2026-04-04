@@ -1,0 +1,43 @@
+CREATE TABLE IF NOT EXISTS "authors" (
+	`id`	TEXT,
+	`artist_img_link`	TEXT,
+	`link_ja`	TEXT,
+	`description_ja`	TEXT,
+	`link_zh`	TEXT,
+	`description_zh`	TEXT,
+	`name`	TEXT,
+	`description`	TEXT,
+	`birth`	TEXT,
+	`death`	TEXT,
+	`link`	TEXT,
+	`style`	TEXT,
+	`description_ro`	TEXT,
+	`link_ro`	TEXT,
+	`description_es`	TEXT,
+	`link_es`	TEXT,
+	`description_de`	TEXT,
+	`link_de`	TEXT,
+	`description_fr`	TEXT,
+	`link_fr`	TEXT,
+	`description_it`	TEXT,
+	`link_it`	TEXT,
+	`description_ru`	TEXT,
+	`link_ru`	TEXT,
+	`description_pt`	TEXT,
+	`link_pt`	TEXT,
+	`name_ro`	TEXT,
+	`name_ru`	TEXT,
+	`name_it`	TEXT,
+	`name_pt`	TEXT,
+	`name_zh`	TEXT,
+	`name_ja`	TEXT,
+	`name_de`	TEXT,
+	`name_es`	TEXT,
+	`name_fr`	TEXT
+);
+
+selectAll:
+SELECT * FROM authors;
+
+selectByName:
+SELECT * FROM authors WHERE name = ?;

@@ -1,0 +1,91 @@
+CREATE TABLE IF NOT EXISTS "museum_item" (
+	`id`	INTEGER,
+	`location`	TEXT,
+	`full_image_uri`	TEXT,
+	`author`	TEXT,
+	`prim_color`	INTEGER,
+	`sec_color`	INTEGER,
+	`detail_color`	INTEGER,
+	`background_color`	INTEGER,
+	`description`	TEXT,
+	`paintingname`	TEXT,
+	`style`	TEXT,
+	`description_ro`	TEXT,
+	`paintingname_ro`	TEXT,
+	`style_ro`	TEXT,
+	`description_es`	TEXT,
+	`paintingname_es`	TEXT,
+	`style_es`	TEXT,
+	`description_de`	TEXT,
+	`paintingname_de`	TEXT,
+	`style_de`	TEXT,
+	`description_fr`	TEXT,
+	`paintingname_fr`	TEXT,
+	`style_fr`	TEXT,
+	`description_it`	TEXT,
+	`paintingname_it`	TEXT,
+	`style_it`	TEXT,
+	`description_ru`	TEXT,
+	`paintingname_ru`	TEXT,
+	`style_ru`	TEXT,
+	`description_pt`	TEXT,
+	`paintingname_pt`	TEXT,
+	`style_pt`	TEXT,
+	`description_ja`	TEXT,
+	`paintingname_ja`	TEXT,
+	`style_ja`	TEXT,
+	`description_zh`	TEXT,
+	`paintingname_zh`	TEXT,
+	`style_zh`	TEXT,
+	`isFavourite`	TEXT,
+	`viewed`	TEXT,
+	`visited`	TEXT
+);
+
+selectAll:
+SELECT * FROM museum_item;
+
+selectById:
+SELECT * FROM museum_item WHERE id = ?;
+
+selectFavorites:
+SELECT * FROM museum_item WHERE isFavourite = 'true';
+
+searchByName:
+SELECT * FROM museum_item WHERE lower(paintingname) LIKE lower('%' || ? || '%');
+
+searchByNameRo:
+SELECT * FROM museum_item WHERE lower(paintingname_ro) LIKE lower('%' || ? || '%');
+
+searchByNameEs:
+SELECT * FROM museum_item WHERE lower(paintingname_es) LIKE lower('%' || ? || '%');
+
+searchByNameDe:
+SELECT * FROM museum_item WHERE lower(paintingname_de) LIKE lower('%' || ? || '%');
+
+searchByNameFr:
+SELECT * FROM museum_item WHERE lower(paintingname_fr) LIKE lower('%' || ? || '%');
+
+searchByNameIt:
+SELECT * FROM museum_item WHERE lower(paintingname_it) LIKE lower('%' || ? || '%');
+
+searchByNameRu:
+SELECT * FROM museum_item WHERE lower(paintingname_ru) LIKE lower('%' || ? || '%');
+
+searchByNamePt:
+SELECT * FROM museum_item WHERE lower(paintingname_pt) LIKE lower('%' || ? || '%');
+
+searchByNameZh:
+SELECT * FROM museum_item WHERE lower(paintingname_zh) LIKE lower('%' || ? || '%');
+
+searchByNameJa:
+SELECT * FROM museum_item WHERE lower(paintingname_ja) LIKE lower('%' || ? || '%');
+
+updateFavorite:
+UPDATE museum_item SET isFavourite = ? WHERE id = ?;
+
+updateViewed:
+UPDATE museum_item SET viewed = ? WHERE id = ?;
+
+countAll:
+SELECT COUNT(*) FROM museum_item;
