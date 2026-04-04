@@ -9,5 +9,5 @@ actual val appPlatformModule = module {
     // DatabaseDriverFactory - Android implementation
     single { DatabaseDriverFactory(androidContext(), "plants.db") }
     // App configuration
-    single { AppConfig(enableMap = false) }
+    single { AppConfig(enableMap = false, enableCategories = false) }
 }
