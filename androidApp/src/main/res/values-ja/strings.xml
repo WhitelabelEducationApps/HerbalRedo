@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ハーバルヘリテージ</string>
+    <string name="search_placeholder">検索...</string>
+    <string name="close_search">検索を閉じる</string>
+    <string name="clear_search">検索をクリア</string>
+    <string name="search">検索</string>
+    <string name="menu">メニュー</string>
+    <string name="back">戻る</string>
+    <string name="add_favorites">お気に入りに追加</string>
+    <string name="remove_favorites">お気に入りから削除</string>
+    <string name="wallpaper_success">壁紙が正常に設定されました！</string>
+    <string name="select_language">言語を選択</string>
+    <string name="automatic">自動</string>
+    <string name="selected">選択済み</string>
+    <string name="set_wallpaper">壁紙として設定</string>
+
+    <!-- View Options -->
+    <string name="grid_view">グリッドビュー</string>
+    <string name="map_view">マップビュー</string>
+    <string name="language">言語</string>
+    <string name="view_options">表示オプション</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d 植物</item>
+        <item quantity="other">%d 植物</item>
+    </plurals>
+</resources>

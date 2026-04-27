@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bitkisel Miras</string>
+    <string name="search_placeholder">Ara...</string>
+    <string name="close_search">Aramayı Kapat</string>
+    <string name="clear_search">Aramayı Temizle</string>
+    <string name="search">Ara</string>
+    <string name="menu">Menü</string>
+    <string name="back">Geri</string>
+    <string name="add_favorites">Favorilere Ekle</string>
+    <string name="remove_favorites">Favorilerden Çıkar</string>
+    <string name="wallpaper_success">Duvar kağıdı başarıyla ayarlandı!</string>
+    <string name="select_language">Dili Seç</string>
+    <string name="automatic">Otomatik</string>
+    <string name="selected">Seçildi</string>
+    <string name="set_wallpaper">Duvar Kağıdı Olarak Ayarla</string>
+</resources>

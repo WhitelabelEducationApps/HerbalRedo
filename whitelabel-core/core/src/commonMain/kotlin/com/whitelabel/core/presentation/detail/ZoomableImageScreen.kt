@@ -32,7 +32,11 @@ fun <T : DisplayableItem> ZoomableImageScreen(
     title: (T) -> String,
     imageUrl: (T) -> String? = { it.imageUrls.firstOrNull() },
     wallpaperIcon: @Composable () -> Unit = {},
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    backDescription: String = "Back",
+    detailScreenTitle: String = "Detail",
+    wallpaperSuccessMessage: String = "Wallpaper set successfully!",
+    noImageAvailableMessage: String = "No image available"
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val wallpaperStatus by viewModel.wallpaperStatus.collectAsState()
@@ -41,7 +45,7 @@ fun <T : DisplayableItem> ZoomableImageScreen(
     LaunchedEffect(wallpaperStatus) {
         when (wallpaperStatus) {
             is WallpaperStatus.Success -> {
-                snackbarHostState.showSnackbar("Wallpaper set successfully!")
+                snackbarHostState.showSnackbar(wallpaperSuccessMessage)
                 viewModel.resetWallpaperStatus()
             }
             is WallpaperStatus.Error -> {
@@ -58,10 +62,10 @@ fun <T : DisplayableItem> ZoomableImageScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(item?.let(title) ?: "Detail") },
+                title = { Text(item?.let(title) ?: detailScreenTitle) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = backDescription)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -114,7 +118,8 @@ fun <T : DisplayableItem> ZoomableImageScreen(
 fun ZoomableImage(
     imageUrl: String?,
     contentDescription: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    noImageAvailableMessage: String = "No image available"
 ) {
     var scale by remember { mutableStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
@@ -140,7 +145,7 @@ fun ZoomableImage(
         contentAlignment = Alignment.Center
     ) {
         if (imageUrl.isNullOrBlank()) {
-            Text("No image available")
+            Text(noImageAvailableMessage)
         } else {
             AsyncImage(
                 model = ImageRequest.Builder(context)

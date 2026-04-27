@@ -26,8 +26,10 @@ fun LanguageSelectionScreen(
     viewModel: LanguageSelectionViewModel,
     onNavigateBack: () -> Unit,
     onLanguageChanged: (LanguageSelectionViewModel) -> Unit = {},
-    title: String = "Language / Limba / Langue",
-    automaticLabel: String = "Automatic (Default)",
+    title: String = "Select Language",
+    automaticLabel: String = "Automatic",
+    backDescription: String = "Back",
+    selectedDescription: String = "Selected",
     modifier: Modifier = Modifier
 ) {
     val selectedLanguage by viewModel.selectedLanguage.collectAsState()
@@ -48,7 +50,7 @@ fun LanguageSelectionScreen(
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = backDescription
                         )
                     }
                 }
@@ -65,7 +67,8 @@ fun LanguageSelectionScreen(
                 languageName = automaticLabel,
                 languageCode = null,
                 isSelected = selectedLanguage == null,
-                onClick = { viewModel.setLanguage(null) }
+                onClick = { viewModel.setLanguage(null) },
+                selectedDescription = selectedDescription
             )
             HorizontalDivider()
 
@@ -74,7 +77,8 @@ fun LanguageSelectionScreen(
                     languageName = language.nativeName,
                     languageCode = language.code,
                     isSelected = selectedLanguage == language.code,
-                    onClick = { viewModel.setLanguage(language) }
+                    onClick = { viewModel.setLanguage(language) },
+                    selectedDescription = selectedDescription
                 )
                 HorizontalDivider()
             }
@@ -88,7 +92,8 @@ private fun LanguageItem(
     languageCode: String?,
     isSelected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    selectedDescription: String = "Selected"
 ) {
     Row(
         modifier = modifier
@@ -114,7 +119,7 @@ private fun LanguageItem(
         if (isSelected) {
             Icon(
                 imageVector = Icons.Filled.Check,
-                contentDescription = "Selected",
+                contentDescription = selectedDescription,
                 tint = MaterialTheme.colorScheme.primary
             )
         }

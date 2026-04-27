@@ -166,7 +166,7 @@ private fun SiteDetailContent(
             }
         }
 
-        if (localizedCountries.isNotBlank()) {
+        if (appConfig.enableCategories && localizedCountries.isNotBlank()) {
             Text(
                 text = localizedCountries,
                 style = MaterialTheme.typography.bodyMedium,

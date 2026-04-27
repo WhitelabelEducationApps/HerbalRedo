@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Patrimônio Herbal</string>
+    <string name="search_placeholder">Pesquisar...</string>
+    <string name="close_search">Fechar pesquisa</string>
+    <string name="clear_search">Limpar pesquisa</string>
+    <string name="search">Pesquisa</string>
+    <string name="menu">Menu</string>
+    <string name="back">Voltar</string>
+    <string name="add_favorites">Adicionar aos favoritos</string>
+    <string name="remove_favorites">Remover dos favoritos</string>
+    <string name="wallpaper_success">Papel de parede definido com sucesso!</string>
+    <string name="select_language">Selecionar Idioma</string>
+    <string name="automatic">Automático</string>
+    <string name="selected">Selecionado</string>
+    <string name="set_wallpaper">Definir como Papel de Parede</string>
+
+    <!-- View Options -->
+    <string name="grid_view">Exibição em grade</string>
+    <string name="map_view">Exibição no mapa</string>
+    <string name="language">Idioma</string>
+    <string name="view_options">Opções de exibição</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d Planta</item>
+        <item quantity="other">%d Plantas</item>
+    </plurals>
+</resources>

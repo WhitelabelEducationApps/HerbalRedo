@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Moștenire Erbală</string>
+    <string name="search_placeholder">Căutare...</string>
+    <string name="close_search">Închidere căutare</string>
+    <string name="clear_search">Ștergere căutare</string>
+    <string name="search">Căutare</string>
+    <string name="menu">Meniu</string>
+    <string name="back">Înapoi</string>
+    <string name="add_favorites">Adăugare la favorite</string>
+    <string name="remove_favorites">Eliminare din favorite</string>
+    <string name="wallpaper_success">Imagine de fundal setată cu succes!</string>
+    <string name="select_language">Selectează Limba</string>
+    <string name="automatic">Automat</string>
+    <string name="selected">Selectat</string>
+    <string name="set_wallpaper">Setează ca Fundal</string>
+
+    <!-- View Options -->
+    <string name="grid_view">Vizualizare grilă</string>
+    <string name="map_view">Vizualizare hartă</string>
+    <string name="language">Limbă</string>
+    <string name="view_options">Opțiuni de vizualizare</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d Plantă</item>
+        <item quantity="other">%d Plante</item>
+    </plurals>
+</resources>

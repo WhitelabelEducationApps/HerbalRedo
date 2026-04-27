@@ -19,7 +19,7 @@ object HeritageSiteMapper {
             imageUrl = full_image_uri,
             isFavorite = isFavourite == "true",
             wasViewed = viewed == "true",
-            // Localized names (herbal only has 9 languages: ro, es, de, fr, it, ru, pt, zh, ja)
+            // Localized names (11 languages: ro, es, de, fr, it, ru, pt, zh, ja, ar, hi)
             nameRo = paintingname_ro,
             nameIt = paintingname_it,
             nameEs = paintingname_es,
@@ -29,6 +29,8 @@ object HeritageSiteMapper {
             nameRu = paintingname_ru,
             nameZh = paintingname_zh,
             nameJa = paintingname_ja,
+            nameAr = paintingname_ar,
+            nameHi = paintingname_hi,
             // Localized descriptions
             descriptionRo = description_ro,
             descriptionIt = description_it,
@@ -39,6 +41,8 @@ object HeritageSiteMapper {
             descriptionRu = description_ru,
             descriptionZh = description_zh,
             descriptionJa = description_ja,
+            descriptionAr = description_ar,
+            descriptionHi = description_hi,
             // Localized styles
             styleRo = style_ro,
             styleIt = style_it,
@@ -49,6 +53,8 @@ object HeritageSiteMapper {
             styleRu = style_ru,
             styleZh = style_zh,
             styleJa = style_ja,
+            styleAr = style_ar,
+            styleHi = style_hi,
             // Colors and location
             primaryColor = prim_color?.toInt(),
             secondaryColor = sec_color?.toInt(),
@@ -59,6 +65,7 @@ object HeritageSiteMapper {
             // LocalizedFieldSet for core DisplayableItem interface
             localizedFields = LocalizedFieldSet(
                 names = buildMap {
+                    put("en", paintingname ?: "")
                     paintingname_ro?.let { put("ro", it) }
                     paintingname_it?.let { put("it", it) }
                     paintingname_es?.let { put("es", it) }
@@ -68,8 +75,11 @@ object HeritageSiteMapper {
                     paintingname_ru?.let { put("ru", it) }
                     paintingname_zh?.let { put("zh", it) }
                     paintingname_ja?.let { put("ja", it) }
+                    paintingname_ar?.let { put("ar", it) }
+                    paintingname_hi?.let { put("hi", it) }
                 },
                 descriptions = buildMap {
+                    put("en", description ?: "")
                     description_ro?.let { put("ro", it) }
                     description_it?.let { put("it", it) }
                     description_es?.let { put("es", it) }
@@ -79,8 +89,11 @@ object HeritageSiteMapper {
                     description_ru?.let { put("ru", it) }
                     description_zh?.let { put("zh", it) }
                     description_ja?.let { put("ja", it) }
+                    description_ar?.let { put("ar", it) }
+                    description_hi?.let { put("hi", it) }
                 },
                 categories = buildMap {
+                    put("en", style ?: "")
                     style_ro?.let { put("ro", it) }
                     style_it?.let { put("it", it) }
                     style_es?.let { put("es", it) }
@@ -90,6 +103,8 @@ object HeritageSiteMapper {
                     style_ru?.let { put("ru", it) }
                     style_zh?.let { put("zh", it) }
                     style_ja?.let { put("ja", it) }
+                    style_ar?.let { put("ar", it) }
+                    style_hi?.let { put("hi", it) }
                 }
             )
         )

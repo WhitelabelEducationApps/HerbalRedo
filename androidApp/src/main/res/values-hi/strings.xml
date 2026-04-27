@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">जड़ी बूटी विरासत</string>
+    <string name="search_placeholder">खोज...</string>
+    <string name="close_search">खोज बंद करें</string>
+    <string name="clear_search">खोज साफ करें</string>
+    <string name="search">खोज</string>
+    <string name="menu">मेनू</string>
+    <string name="back">वापस</string>
+    <string name="add_favorites">पसंदीदा में जोड़ें</string>
+    <string name="remove_favorites">पसंदीदा से हटाएं</string>
+    <string name="wallpaper_success">वॉलपेपर सफलतापूर्वक सेट हो गया!</string>
+    <string name="select_language">भाषा चुनें</string>
+    <string name="automatic">स्वचालित</string>
+    <string name="selected">चयनित</string>
+    <string name="set_wallpaper">वॉलपेपर के रूप में सेट करें</string>
+
+    <!-- View Options -->
+    <string name="grid_view">ग्रिड दृश्य</string>
+    <string name="map_view">मानचित्र दृश्य</string>
+    <string name="language">भाषा</string>
+    <string name="view_options">दृश्य विकल्प</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d वनस्पति</item>
+        <item quantity="other">%d वनस्पतियाँ</item>
+    </plurals>
+</resources>

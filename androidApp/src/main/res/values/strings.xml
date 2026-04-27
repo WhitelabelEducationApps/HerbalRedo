@@ -1,4 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Herbal Remedies</string>
+    <string name="app_name">Herbal Heritage</string>
+
+    <!-- Search UI -->
+    <string name="search_placeholder">Search...</string>
+    <string name="close_search">Close search</string>
+    <string name="clear_search">Clear search</string>
+    <string name="search">Search</string>
+
+    <!-- Navigation -->
+    <string name="menu">Menu</string>
+    <string name="back">Back</string>
+
+    <!-- Favorites -->
+    <string name="add_favorites">Add to favorites</string>
+    <string name="remove_favorites">Remove from favorites</string>
+
+    <!-- Messages -->
+    <string name="wallpaper_success">Wallpaper set successfully!</string>
+    <string name="set_wallpaper">Set as Wallpaper</string>
+
+    <!-- Language -->
+    <string name="select_language">Select Language</string>
+    <string name="automatic">Automatic</string>
+    <string name="selected">Selected</string>
+
+    <!-- View Options -->
+    <string name="grid_view">Grid View</string>
+    <string name="map_view">Map View</string>
+    <string name="language">Language</string>
+    <string name="view_options">View Options</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d Plant</item>
+        <item quantity="other">%d Plants</item>
+    </plurals>
+
+    <!-- Category Count -->
+    <plurals name="category_item_count">
+        <item quantity="one">%s (%d)</item>
+        <item quantity="other">%s (%d)</item>
+    </plurals>
 </resources>

@@ -28,7 +28,11 @@ fun <T : DisplayableItem> ItemDetailScreen(
     topBarColor: @Composable (T) -> Color = { MaterialTheme.colorScheme.primaryContainer },
     topBarContentColor: @Composable (T) -> Color = { MaterialTheme.colorScheme.onPrimaryContainer },
     floatingActionButton: @Composable (T) -> Unit = {},
-    content: @Composable (item: T, localizedGroupName: String?) -> Unit
+    content: @Composable (item: T, localizedGroupName: String?) -> Unit,
+    backDescription: String = "Back",
+    addFavoritesDescription: String = "Add to favorites",
+    removeFavoritesDescription: String = "Remove from favorites",
+    wallpaperSuccessMessage: String = "Wallpaper set successfully!"
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val wallpaperStatus by viewModel.wallpaperStatus.collectAsState()
@@ -37,7 +41,7 @@ fun <T : DisplayableItem> ItemDetailScreen(
     LaunchedEffect(wallpaperStatus) {
         when (wallpaperStatus) {
             is WallpaperStatus.Success -> {
-                snackbarHostState.showSnackbar("Wallpaper set successfully!")
+                snackbarHostState.showSnackbar(wallpaperSuccessMessage)
                 viewModel.resetWallpaperStatus()
             }
             is WallpaperStatus.Error -> {
@@ -65,14 +69,14 @@ fun <T : DisplayableItem> ItemDetailScreen(
                     },
                     navigationIcon = {
                         IconButton(onClick = onBackClick) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = backDescription)
                         }
                     },
                     actions = {
                         IconButton(onClick = { viewModel.onFavoriteClick(it) }) {
                             Icon(
                                 imageVector = if (it.isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                                contentDescription = if (it.isFavorite) "Remove from favorites" else "Add to favorites",
+                                contentDescription = if (it.isFavorite) removeFavoritesDescription else addFavoritesDescription,
                                 tint = topBarContentColor(it)
                             )
                         }

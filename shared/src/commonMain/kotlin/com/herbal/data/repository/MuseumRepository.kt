@@ -99,31 +99,7 @@ class MuseumRepository(private val dataSource: HeritageSiteLocalDataSource) : IM
     }
 
     override suspend fun getCountryTranslations(countryNames: List<String>): Result<Map<String, Country>> {
-        // TODO: Implement country translations for herbal db
         return Result.Success(emptyMap())
-        /*
-        return try {
-            val translations = dataSource.getCountryTranslations(countryNames)
-            val countries = translations.mapValues { (_, translation) ->
-                Country(
-                    name = translation.name ?: "",
-                    nameRo = translation.name_ro,
-                    nameIt = translation.name_it,
-                    nameEs = translation.name_es,
-                    nameDe = translation.name_de,
-                    nameFr = translation.name_fr,
-                    namePt = translation.name_pt,
-                    nameRu = translation.name_ru,
-                    nameAr = translation.name_ar,
-                    nameZh = translation.name_zh,
-                    nameJa = translation.name_ja
-                )
-            }
-            Result.Success(countries)
-        } catch (e: Exception) {
-            Result.Error(e)
-        }
-        */
     }
 
     // === ItemRepository<HeritageSite> core interface methods ===

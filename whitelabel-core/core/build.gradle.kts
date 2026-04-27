@@ -57,10 +57,10 @@ kotlin {
 
 android {
     namespace = "com.whitelabel.core"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
     }
 
     compileOptions {

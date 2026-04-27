@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Herencia Herbaria</string>
+    <string name="search_placeholder">Buscar...</string>
+    <string name="close_search">Cerrar búsqueda</string>
+    <string name="clear_search">Limpiar búsqueda</string>
+    <string name="search">Búsqueda</string>
+    <string name="menu">Menú</string>
+    <string name="back">Atrás</string>
+    <string name="add_favorites">Agregar a favoritos</string>
+    <string name="remove_favorites">Quitar de favoritos</string>
+    <string name="wallpaper_success">¡Fondo de pantalla establecido correctamente!</string>
+    <string name="select_language">Seleccionar Idioma</string>
+    <string name="automatic">Automático</string>
+    <string name="selected">Seleccionado</string>
+    <string name="set_wallpaper">Establecer como Fondo</string>
+
+    <!-- View Options -->
+    <string name="grid_view">Vista en cuadrícula</string>
+    <string name="map_view">Vista de mapa</string>
+    <string name="language">Idioma</string>
+    <string name="view_options">Opciones de vista</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d Planta</item>
+        <item quantity="other">%d Plantas</item>
+    </plurals>
+</resources>

@@ -37,6 +37,12 @@ CREATE TABLE IF NOT EXISTS "museum_item" (
 	`description_zh`	TEXT,
 	`paintingname_zh`	TEXT,
 	`style_zh`	TEXT,
+	`description_ar`	TEXT,
+	`paintingname_ar`	TEXT,
+	`style_ar`	TEXT,
+	`description_hi`	TEXT,
+	`paintingname_hi`	TEXT,
+	`style_hi`	TEXT,
 	`isFavourite`	TEXT,
 	`viewed`	TEXT,
 	`visited`	TEXT
@@ -80,6 +86,12 @@ SELECT * FROM museum_item WHERE lower(paintingname_zh) LIKE lower('%' || ? || '%
 
 searchByNameJa:
 SELECT * FROM museum_item WHERE lower(paintingname_ja) LIKE lower('%' || ? || '%');
+
+searchByNameAr:
+SELECT * FROM museum_item WHERE lower(paintingname_ar) LIKE lower('%' || ? || '%');
+
+searchByNameHi:
+SELECT * FROM museum_item WHERE lower(paintingname_hi) LIKE lower('%' || ? || '%');
 
 updateFavorite:
 UPDATE museum_item SET isFavourite = ? WHERE id = ?;

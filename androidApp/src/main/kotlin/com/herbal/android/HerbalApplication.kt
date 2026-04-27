@@ -9,6 +9,12 @@ import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.crossfade
 import coil3.util.DebugLogger
 import com.herbal.di.initKoin
+import com.herbal.utils.LanguagePreferences
+import com.herbal.utils.DataStoreLanguagePersistence
+import com.herbal.utils.LocaleManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.logger.Level
@@ -31,6 +37,20 @@ class HerbalApplication : Application(), SingletonImageLoader.Factory {
                     .penaltyLog()
                     .build()
             )
+        }
+
+        // Initialize language persistence
+        LanguagePreferences.initPersistence(DataStoreLanguagePersistence(this))
+
+        // Set initial app locale based on saved language preference
+        val savedLanguage = LanguagePreferences.getEffectiveLanguage()
+        LocaleManager.setAppLocale(this, if (savedLanguage == LocaleManager.getAppLocale(this)) null else savedLanguage)
+
+        // Listen for language changes and update app locale
+        CoroutineScope(Dispatchers.Main).launch {
+            LanguagePreferences.selectedLanguage.collect { language ->
+                LocaleManager.setAppLocale(this@HerbalApplication, language?.code)
+            }
         }
 
         // Initialize Koin

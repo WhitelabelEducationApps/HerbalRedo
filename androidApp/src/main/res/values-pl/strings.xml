@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dziedzictwo Ziołowe</string>
+    <string name="search_placeholder">Szukaj...</string>
+    <string name="close_search">Zamknij wyszukiwanie</string>
+    <string name="clear_search">Wyczyść wyszukiwanie</string>
+    <string name="search">Szukaj</string>
+    <string name="menu">Menu</string>
+    <string name="back">Wstecz</string>
+    <string name="add_favorites">Dodaj do ulubionych</string>
+    <string name="remove_favorites">Usuń z ulubionych</string>
+    <string name="wallpaper_success">Tapeta została pomyślnie ustawiona!</string>
+    <string name="select_language">Wybierz Język</string>
+    <string name="automatic">Automatyczny</string>
+    <string name="selected">Wybrane</string>
+    <string name="set_wallpaper">Ustaw jako Tapetę</string>
+</resources>

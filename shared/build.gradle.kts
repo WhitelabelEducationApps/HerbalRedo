@@ -70,6 +70,8 @@ kotlin {
                 implementation(libs.koin.compose)
                 // Palette API for color extraction
                 implementation("androidx.palette:palette:1.0.0")
+                // DataStore for preferences
+                implementation(libs.androidx.datastore)
             }
         }
 
@@ -88,10 +90,10 @@ kotlin {
 
 android {
     namespace = "com.herbal.shared"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
     }
 
     compileOptions {
@@ -111,7 +113,7 @@ sqldelight {
         create("HerbalDatabase") {
             packageName.set("com.herbal.data.local")
             schemaOutputDirectory.set(file("src/commonMain/sqldelight/com/herbal/data/local"))
-            version=1
+            version=2
         }
     }
 }

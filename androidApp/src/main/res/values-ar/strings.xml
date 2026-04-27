@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الموروث العشبي</string>
+    <string name="search_placeholder">بحث...</string>
+    <string name="close_search">إغلاق البحث</string>
+    <string name="clear_search">مسح البحث</string>
+    <string name="search">بحث</string>
+    <string name="menu">القائمة</string>
+    <string name="back">رجوع</string>
+    <string name="add_favorites">إضافة للمفضلة</string>
+    <string name="remove_favorites">إزالة من المفضلة</string>
+    <string name="wallpaper_success">تم تعيين الخلفية بنجاح!</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="automatic">تلقائي</string>
+    <string name="selected">محدد</string>
+    <string name="set_wallpaper">تعيين كخلفية</string>
+
+    <!-- View Options -->
+    <string name="grid_view">عرض الشبكة</string>
+    <string name="map_view">عرض الخريطة</string>
+    <string name="language">لغة</string>
+    <string name="view_options">خيارات العرض</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d نبات</item>
+        <item quantity="other">%d نباتات</item>
+    </plurals>
+</resources>

@@ -1,0 +1,19 @@
+Here is the translation of the text into English, preserving the structure and content:
+
+---
+
+**ITEM 1**  
+**Name:** Caru  
+**Description:** Caru is used in traditional remedies to treat inflammation, skin diseases, and digestive problems. It has anti-inflammatory and antiseptic properties.  
+
+**ITEM 2**  
+**Name:** Cinnamon Stick  
+**Description:** Cinnamon stick is used in traditional remedies to treat inflammation, skin diseases, and digestive problems. It has anti-inflammatory and antiseptic properties.  
+
+**ITEM 3**  
+**Name:** Cinnamon Oil  
+**Description:** Cinnamon oil is used in traditional remedies to treat inflammation, skin diseases, and digestive problems. It has anti-inflammatory and antiseptic properties.  
+
+--- 
+
+Let me know if you need the translation in another language or further refinements!

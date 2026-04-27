@@ -102,4 +102,8 @@ class HeritageSiteLocalDataSource(
             heritageQueries.countAll().executeAsOne()
         }
     }
+
+    suspend fun getAllAuthors() = withContext(dispatcher) {
+        authorQueries.selectAll().executeAsList()
+    }
 }

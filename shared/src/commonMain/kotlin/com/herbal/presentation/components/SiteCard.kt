@@ -1,13 +1,17 @@
 ﻿package com.herbal.presentation.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.herbal.data.models.HeritageSite
+import com.herbal.utils.LanguagePreferences
 import com.herbal.utils.getCardBackgroundColor
 import com.whitelabel.platform.presentation.components.GenericSiteCard
 import com.whitelabel.platform.utils.debugLogD
+import com.whitelabel.platform.utils.debugLogI
 import com.whitelabel.platform.utils.logUserAction
 
 private const val TAG = "SiteCard"
@@ -20,9 +24,9 @@ private const val TAG = "SiteCard"
 expect fun getSiteDrawableId(site: HeritageSite): Int?
 
 /**
- * Museum-specific SiteCard that uses GenericSiteCard from whitelabel-platform
- * with museum-specific theming and image loading.
- * Prioritizes local drawable resources over remote URLs.
+ * Herbal-specific SiteCard that displays plant names in the current locale.
+ * Wraps GenericSiteCard from whitelabel-platform which uses localizedFields
+ * from the DisplayableItem interface for name/description localization.
  */
 @Composable
 fun SiteCard(
@@ -33,12 +37,13 @@ fun SiteCard(
 ) {
     val drawableId = getSiteDrawableId(site)
     val imageUrl = site.imageUrl?.split(",")?.firstOrNull()?.trim()
-    
-    debugLogD(TAG, "Rendering SiteCard for site ${site.id}: ${site.name}, drawableId=$drawableId, hasUrl=${imageUrl != null}")
-    
+    val selectedLanguage by LanguagePreferences.selectedLanguage.collectAsState()
+    val languageCode = selectedLanguage?.code ?: "en"
+
+    debugLogD(TAG, "Rendering SiteCard for site ${site.id}: ${site.name}, lang=$languageCode, drawableId=$drawableId")
     GenericSiteCard(
         item = site,
-        languageCode = "en",
+        languageCode = languageCode,
         onClick = {
             logUserAction(TAG, "clicked site card", "siteId=${site.id}, name=${site.name}")
             onClick()

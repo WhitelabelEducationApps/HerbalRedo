@@ -6,9 +6,11 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.whitelabel.core.AppConfig
 import com.whitelabel.core.presentation.home.ViewMode
+import com.whitelabel.core.presentation.home.getAvailableViewModes
 import com.whitelabel.platform.presentation.screens.home.CatalogNavigationDrawer
 import com.whitelabel.platform.presentation.screens.home.DrawerMenuItem
 import com.whitelabel.platform.utils.debugLogD
@@ -35,27 +37,42 @@ fun HomeDrawerContent(
     modifier: Modifier = Modifier
 ) {
     logLifecycle(TAG, "Composable entered, currentViewMode=$viewMode")
-    val menuItems = mutableListOf(
-        DrawerMenuItem(
-            label = "Grid View",
+    val context = LocalContext.current
+    val availableViewModes = appConfig.getAvailableViewModes()
+    val showViewModeSwitcher = availableViewModes.size > 1
+
+    // Get strings from resources
+    val gridViewLabel = context.getString(context.resources.getIdentifier("grid_view", "string", context.packageName))
+    val mapViewLabel = context.getString(context.resources.getIdentifier("map_view", "string", context.packageName))
+    val languageLabel = context.getString(context.resources.getIdentifier("language", "string", context.packageName))
+    val viewOptionsLabel = context.getString(context.resources.getIdentifier("view_options", "string", context.packageName))
+
+    val menuItems = mutableListOf<DrawerMenuItem>()
+
+    // Only show view mode options if multiple modes are available
+    if (showViewModeSwitcher) {
+        menuItems.add(DrawerMenuItem(
+            label = gridViewLabel,
             icon = Res.drawable.grid_view,
             viewMode = ViewMode.Grid
-        ),
-        DrawerMenuItem(
-            label = "Language",
-            icon = Res.drawable.language,
-            isAction = true,
-            onClick = onLanguageClick
-        )
-    )
-
-    if (appConfig.enableMap) {
-        menuItems.add(1, DrawerMenuItem(
-            label = "Map View",
-            icon = Res.drawable.map,
-            viewMode = ViewMode.Map
         ))
+
+        if (appConfig.enableMap) {
+            menuItems.add(DrawerMenuItem(
+                label = mapViewLabel,
+                icon = Res.drawable.map,
+                viewMode = ViewMode.Map
+            ))
+        }
     }
+
+    // Always show language option
+    menuItems.add(DrawerMenuItem(
+        label = languageLabel,
+        icon = Res.drawable.language,
+        isAction = true,
+        onClick = onLanguageClick
+    ))
 
     CatalogNavigationDrawer(
         currentViewMode = viewMode,
@@ -64,7 +81,7 @@ fun HomeDrawerContent(
             onViewModeChange(newMode)
         },
         menuItems = menuItems,
-        headerTitle = "View Options",
+        headerTitle = viewOptionsLabel,
         onCloseDrawer = {
             debugLogD(TAG, "Closing drawer")
             onCloseDrawer()

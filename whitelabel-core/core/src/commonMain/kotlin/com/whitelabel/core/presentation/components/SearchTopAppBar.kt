@@ -28,7 +28,11 @@ fun SearchTopAppBar(
     onSearchQueryChange: (String) -> Unit,
     onSearchActiveChange: (Boolean) -> Unit,
     onOpenDrawer: () -> Unit,
-    searchPlaceholder: String = "Search..."
+    searchPlaceholder: String = "Search...",
+    closeSearchDescription: String = "Close search",
+    clearSearchDescription: String = "Clear search",
+    menuDescription: String = "Menu",
+    searchDescription: String = "Search"
 ) {
     if (searchActive) {
         val focusRequester = remember { FocusRequester() }
@@ -60,13 +64,13 @@ fun SearchTopAppBar(
             },
             navigationIcon = {
                 IconButton(onClick = { onSearchActiveChange(false) }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Close search")
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = closeSearchDescription)
                 }
             },
             actions = {
                 if (searchQuery.isNotEmpty()) {
                     IconButton(onClick = { onSearchQueryChange("") }) {
-                        Icon(Icons.Default.Close, contentDescription = "Clear search")
+                        Icon(Icons.Default.Close, contentDescription = clearSearchDescription)
                     }
                 }
             },
@@ -82,12 +86,12 @@ fun SearchTopAppBar(
             title = { Text(appTitle) },
             navigationIcon = {
                 IconButton(onClick = onOpenDrawer) {
-                    Icon(Icons.Default.Menu, contentDescription = "Menu")
+                    Icon(Icons.Default.Menu, contentDescription = menuDescription)
                 }
             },
             actions = {
                 IconButton(onClick = { onSearchActiveChange(true) }) {
-                    Icon(Icons.Default.Search, contentDescription = "Search")
+                    Icon(Icons.Default.Search, contentDescription = searchDescription)
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(

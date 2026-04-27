@@ -19,6 +19,10 @@ fun HomeTopAppBar(
         onSearchQueryChange = onSearchQueryChange,
         onSearchActiveChange = onSearchActiveChange,
         onOpenDrawer = onOpenDrawer,
-        searchPlaceholder = "Search heritage sites..."
+        searchPlaceholder = getStringResource("search_placeholder"),
+        closeSearchDescription = getStringResource("close_search"),
+        clearSearchDescription = getStringResource("clear_search"),
+        menuDescription = getStringResource("menu"),
+        searchDescription = getStringResource("search")
     )
 }

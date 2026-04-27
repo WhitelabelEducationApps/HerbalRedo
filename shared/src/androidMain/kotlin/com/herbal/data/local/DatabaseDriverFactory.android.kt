@@ -42,8 +42,40 @@ actual class DatabaseDriverFactory(private val context: Context, private val dbN
                 newVersion: Long,
                 vararg callbacks: app.cash.sqldelight.db.AfterVersion
             ): app.cash.sqldelight.db.QueryResult.Value<Unit> {
-                // Version mismatch — don't touch the schema, just return success
-                // (The pre-populated asset DB has its own version management)
+                if (oldVersion < 2) {
+                    // Add Arabic and Hindi language columns to museum_item
+                    try {
+                        driver.execute(null, "ALTER TABLE museum_item ADD COLUMN description_ar TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE museum_item ADD COLUMN paintingname_ar TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE museum_item ADD COLUMN style_ar TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE museum_item ADD COLUMN description_hi TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE museum_item ADD COLUMN paintingname_hi TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE museum_item ADD COLUMN style_hi TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    // Add Arabic and Hindi language columns to authors
+                    try {
+                        driver.execute(null, "ALTER TABLE authors ADD COLUMN name_ar TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE authors ADD COLUMN name_hi TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE authors ADD COLUMN description_ar TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                    try {
+                        driver.execute(null, "ALTER TABLE authors ADD COLUMN description_hi TEXT", 0)
+                    } catch (e: Exception) { /* column may already exist */ }
+                }
                 return app.cash.sqldelight.db.QueryResult.Unit
             }
         }

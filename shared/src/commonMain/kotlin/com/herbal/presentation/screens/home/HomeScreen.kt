@@ -142,7 +142,8 @@ fun HomeScreen(
                     onClearFocusedSite = {
                         debugLogD(TAG, "clearing focused site")
                         viewModel.clearFocusedItem()
-                    }
+                    },
+                    showCategory = appConfig.enableCategories
                 )
             }
         }

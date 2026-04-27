@@ -8,14 +8,23 @@ plugins {
 
 android {
     namespace = "com.herbal.android"
-    compileSdk = 34
+    compileSdk = 35
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("../uploadKey.jks")
+            storePassword = "electronica09"
+            keyAlias = "radu"
+            keyPassword = "electronica09"
+        }
+    }
 
     defaultConfig {
         applicationId = "com.beacon.medicinalplantsnew"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 60
-        versionName = "1.0.3"
+        minSdk = 21
+        targetSdk = 35
+        versionCode = 70
+        versionName = "1.1.4"
 
         val properties = Properties()
         val localPropertiesFile = rootProject.file("local.properties")
@@ -29,6 +38,12 @@ android {
 
         // Resources for manifest placeholder
         resValue("string", "maps_api_key", mapsApiKey)
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.getByName("release")
+        }
     }
 
     buildFeatures {

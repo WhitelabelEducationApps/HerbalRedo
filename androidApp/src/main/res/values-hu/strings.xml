@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fűvészeti Örökség</string>
+    <string name="search_placeholder">Keresés...</string>
+    <string name="close_search">Keresés bezárása</string>
+    <string name="clear_search">Keresés törlése</string>
+    <string name="search">Keresés</string>
+    <string name="menu">Menü</string>
+    <string name="back">Vissza</string>
+    <string name="add_favorites">Hozzáadás a kedvencekhez</string>
+    <string name="remove_favorites">Eltávolítás a kedvencekből</string>
+    <string name="wallpaper_success">Háttérkép sikeresen beállítva!</string>
+    <string name="select_language">Válasszon Nyelvet</string>
+    <string name="automatic">Automatikus</string>
+    <string name="selected">Kiválasztva</string>
+    <string name="set_wallpaper">Beállítás Háttérképként</string>
+</resources>

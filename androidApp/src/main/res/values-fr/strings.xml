@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Patrimoine Herbier</string>
+    <string name="search_placeholder">Rechercher...</string>
+    <string name="close_search">Fermer la recherche</string>
+    <string name="clear_search">Effacer la recherche</string>
+    <string name="search">Recherche</string>
+    <string name="menu">Menu</string>
+    <string name="back">Retour</string>
+    <string name="add_favorites">Ajouter aux favoris</string>
+    <string name="remove_favorites">Supprimer des favoris</string>
+    <string name="wallpaper_success">Fond d\'écran défini avec succès!</string>
+    <string name="select_language">Sélectionner la Langue</string>
+    <string name="automatic">Automatique</string>
+    <string name="selected">Sélectionné</string>
+    <string name="set_wallpaper">Définir comme Fond d\'Écran</string>
+
+    <!-- View Options -->
+    <string name="grid_view">Affichage en grille</string>
+    <string name="map_view">Affichage sur la carte</string>
+    <string name="language">Langue</string>
+    <string name="view_options">Options d\'affichage</string>
+
+    <!-- Plant Count -->
+    <plurals name="plant_count">
+        <item quantity="one">%d Plante</item>
+        <item quantity="other">%d Plantes</item>
+    </plurals>
+</resources>

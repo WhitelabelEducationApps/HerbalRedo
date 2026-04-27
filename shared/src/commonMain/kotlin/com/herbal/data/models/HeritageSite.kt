@@ -4,6 +4,9 @@ import com.herbal.utils.LanguagePreferences
 import com.herbal.utils.SupportedLanguage
 import com.whitelabel.core.domain.model.DisplayableItem
 import com.whitelabel.core.domain.model.LocalizedFieldSet
+import com.whitelabel.platform.utils.debugLogD
+
+const val TAG = "HeritageSite"
 
 data class HeritageSite(
     override val id: Long,
@@ -86,7 +89,7 @@ data class HeritageSite(
     // Legacy no-arg methods using global state (backward compat for existing callers)
     fun getLocalizedName(): String {
         val language = SupportedLanguage.fromCode(LanguagePreferences.getEffectiveLanguage())
-        return when (language) {
+        val ret = when (language) {
             SupportedLanguage.ROMANIAN -> nameRo
             SupportedLanguage.ITALIAN -> nameIt
             SupportedLanguage.SPANISH -> nameEs
@@ -101,8 +104,10 @@ data class HeritageSite(
             SupportedLanguage.HINDI -> nameHi
             SupportedLanguage.HUNGARIAN -> nameHu
             SupportedLanguage.POLISH -> namePl
-            SupportedLanguage.ENGLISH -> null
+            SupportedLanguage.ENGLISH -> name
         } ?: name
+        debugLogD(TAG, "getLocalizedName for: $name returns: $ret")
+        return ret
     }
 
     fun getLocalizedDescription(): String? {
