@@ -2,3 +2,7 @@
 /shared/build/
 /.gradle/
 /androidApp/release/
+uploadKey.jks
+upload_certificate.pem
+*.jks
+*.keystore
