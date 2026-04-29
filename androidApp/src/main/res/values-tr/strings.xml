@@ -14,4 +14,10 @@
     <string name="automatic">Otomatik</string>
     <string name="selected">Seçildi</string>
     <string name="set_wallpaper">Duvar Kağıdı Olarak Ayarla</string>
+
+    <string name="use_location_plants">Yalnızca Yerel Bitkiler</string>
+    <string name="onboarding_title">Yerel Bitkileri Keşfedin</string>
+    <string name="onboarding_message">Yan menüyü açın ve \'Yalnızca Yerel Bitkiler\' seçeneğini etkinleştirin; bölgenizde doğal olarak yetişen bitkileri görün.</string>
+    <string name="onboarding_ok">Anladım</string>
+    <string name="location_permission_denied">Konum izni reddedildi. Filtre devre dışı.</string>
 </resources>

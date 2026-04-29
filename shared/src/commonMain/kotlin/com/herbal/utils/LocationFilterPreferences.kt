@@ -8,9 +8,9 @@ object LocationFilterPreferences {
     private val _useLocationFilter = MutableStateFlow(false)
     val useLocationFilter: StateFlow<Boolean> = _useLocationFilter.asStateFlow()
 
-    // The user's current geographic zone ID (e.g. "zone_central_europe"), null when unknown
-    private val _currentUserZone = MutableStateFlow<String?>(null)
-    val currentUserZone: StateFlow<String?> = _currentUserZone.asStateFlow()
+    // All geographic zones the user's location falls in (e.g. ["zone_eastern_europe", "zone_southern_europe"])
+    private val _currentUserZones = MutableStateFlow<List<String>>(emptyList())
+    val currentUserZones: StateFlow<List<String>> = _currentUserZones.asStateFlow()
 
     private var persistence: ILocationFilterPersistence? = null
 
@@ -24,8 +24,8 @@ object LocationFilterPreferences {
         persistence?.saveUseLocationFilter(value)
     }
 
-    fun setCurrentUserZone(zone: String?) {
-        _currentUserZone.value = zone
+    fun setCurrentUserZones(zones: List<String>) {
+        _currentUserZones.value = zones
     }
 }
 

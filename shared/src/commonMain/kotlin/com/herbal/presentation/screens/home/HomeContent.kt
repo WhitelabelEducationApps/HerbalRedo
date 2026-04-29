@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.herbal.data.models.HeritageSite
 import com.herbal.presentation.components.getSiteDrawableId
+import com.herbal.presentation.components.getSiteDrawableIds
 import com.herbal.utils.LanguagePreferences
 import com.whitelabel.core.presentation.home.HomeUiState
 import com.whitelabel.core.presentation.home.ViewMode
@@ -73,6 +74,7 @@ fun HomeContent(
         modifier = modifier,
         gridColumns = 2,
         drawableResourceIdProvider = { site -> getSiteDrawableId(site) },
+        drawableResourceIdsProvider = { site -> getSiteDrawableIds(site) },
         colorExtractor = { site ->
             val drawableId = getSiteDrawableId(site)
             drawableId?.let { id ->

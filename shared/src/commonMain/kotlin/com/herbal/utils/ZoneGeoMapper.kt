@@ -86,29 +86,12 @@ object ZoneGeoMapper {
     )
 
     /**
-     * Returns the best-matching zone ID for the given GPS coordinates.
-     * Returns null if no zone matches (very rare edge case — open ocean, etc.)
+     * Returns ALL zone IDs that contain the given GPS coordinates.
+     * A location near a border (e.g. Romania) will return multiple zones so
+     * plants native to any of those zones appear in the local filter.
      */
-    fun getZoneForLocation(lat: Double, lng: Double): String? {
-        val matches = zoneBBoxes.entries.filter { (_, boxes) ->
-            boxes.any { it.contains(lat, lng) }
-        }.map { it.key }
-
-        if (matches.isEmpty()) return null
-
-        // If multiple boxes match (overlapping borders), prefer the most specific
-        // Priority: smaller regions over larger catch-alls
-        val priority = listOf(
-            "zone_northern_europe", "zone_central_europe", "zone_southern_europe",
-            "zone_eastern_europe", "zone_northern_africa", "zone_western_africa",
-            "zone_eastern_africa", "zone_southern_africa", "zone_western_asia",
-            "zone_central_asia", "zone_south_asia", "zone_southeast_asia",
-            "zone_east_asia", "zone_siberia", "zone_north_america_east",
-            "zone_north_america_west", "zone_central_america",
-            "zone_south_america_north", "zone_south_america_south",
-            "zone_australia_oceania", "zone_arctic", "zone_tropical_africa"
-        )
-
-        return matches.minByOrNull { priority.indexOf(it) }
-    }
+    fun getZonesForLocation(lat: Double, lng: Double): List<String> =
+        zoneBBoxes.entries
+            .filter { (_, boxes) -> boxes.any { it.contains(lat, lng) } }
+            .map { it.key }
 }

@@ -26,4 +26,10 @@
         <item quantity="one">%d 植物</item>
         <item quantity="other">%d 植物</item>
     </plurals>
+
+    <string name="use_location_plants">仅本地植物</string>
+    <string name="onboarding_title">发现本地植物</string>
+    <string name="onboarding_message">打开侧边菜单并启用\'仅本地植物\'，以查看在您所在地区自然生长的植物。</string>
+    <string name="onboarding_ok">明白了</string>
+    <string name="location_permission_denied">位置权限被拒绝。过滤器已禁用。</string>
 </resources>

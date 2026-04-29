@@ -74,6 +74,8 @@ kotlin {
                 implementation(libs.androidx.datastore)
                 // Location services for GPS-based plant filtering
                 implementation(libs.play.services.location)
+                // Activity result API for permission launcher
+                implementation(libs.androidx.activity.compose)
             }
         }
 

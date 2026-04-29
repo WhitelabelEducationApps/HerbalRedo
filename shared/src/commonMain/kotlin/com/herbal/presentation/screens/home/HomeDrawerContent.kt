@@ -6,9 +6,13 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.herbal.utils.LanguagePreferences
 import com.whitelabel.core.AppConfig
 import com.whitelabel.core.presentation.home.ViewMode
 import com.whitelabel.core.presentation.home.getAvailableViewModes
@@ -25,6 +29,7 @@ import herbalredo.shared.generated.resources.map
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import java.util.Locale
 
 private const val TAG = "HomeDrawerContent"
 
@@ -42,15 +47,28 @@ fun HomeDrawerContent(
 ) {
     logLifecycle(TAG, "Composable entered, currentViewMode=$viewMode")
     val context = LocalContext.current
+    val selectedLanguage by LanguagePreferences.selectedLanguage.collectAsState()
     val availableViewModes = appConfig.getAvailableViewModes()
     val showViewModeSwitcher = availableViewModes.size > 1
 
+    // Build a locale-aware context so strings reflect the selected language
+    // even before the Activity recreates (e.g. when drawer is open during switch).
+    val localizedContext = remember(selectedLanguage) {
+        val locale = selectedLanguage?.let { Locale(it.code) } ?: Locale.getDefault()
+        val config = android.content.res.Configuration(context.resources.configuration)
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+    }
+
     // Get strings from resources
-    val gridViewLabel = context.getString(context.resources.getIdentifier("grid_view", "string", context.packageName))
-    val mapViewLabel = context.getString(context.resources.getIdentifier("map_view", "string", context.packageName))
-    val languageLabel = context.getString(context.resources.getIdentifier("language", "string", context.packageName))
-    val viewOptionsLabel = context.getString(context.resources.getIdentifier("view_options", "string", context.packageName))
-    val useLocationPlantsLabel = context.getString(context.resources.getIdentifier("use_location_plants", "string", context.packageName))
+    fun str(name: String) = localizedContext.getString(
+        localizedContext.resources.getIdentifier(name, "string", context.packageName)
+    )
+    val gridViewLabel = str("grid_view")
+    val mapViewLabel = str("map_view")
+    val languageLabel = str("language")
+    val viewOptionsLabel = str("view_options")
+    val useLocationPlantsLabel = str("use_location_plants")
 
     val menuItems = mutableListOf<DrawerMenuItem>()
 

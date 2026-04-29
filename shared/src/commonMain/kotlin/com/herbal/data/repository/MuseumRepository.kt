@@ -27,22 +27,23 @@ class MuseumRepository(private val dataSource: HeritageSiteLocalDataSource) : IM
         return combine(
             dataSource.getAllSites(),
             LocationFilterPreferences.useLocationFilter,
-            LocationFilterPreferences.currentUserZone
-        ) { items, filterOn, userZone ->
-            com.herbal.utils.LOG("MuseumRepository.getAllSites() - Mapping ${items.size} items, filterOn=$filterOn, zone=$userZone")
+            LocationFilterPreferences.currentUserZones
+        ) { items, filterOn, userZones ->
+            com.herbal.utils.LOG("MuseumRepository.getAllSites() - Mapping ${items.size} items, filterOn=$filterOn, zones=$userZones")
             com.herbal.utils.checkMainThread()
             val sites = com.herbal.utils.measureTimeAndLog("getAllSites mapping ${items.size} items") {
                 items.toHeritageSites()
             }
-            if (filterOn && userZone != null) {
+            val result: Result<List<HeritageSite>> = if (filterOn && userZones.isNotEmpty()) {
                 val filtered = sites.filter { site ->
-                    site.author?.split(",")?.any { it.trim() == userZone } == true
+                    site.author?.split(",")?.any { it.trim() in userZones } == true
                 }
-                com.herbal.utils.LOG("MuseumRepository.getAllSites() - Location filter active: ${filtered.size}/${sites.size} plants in $userZone")
+                com.herbal.utils.LOG("MuseumRepository.getAllSites() - Location filter active: ${filtered.size}/${sites.size} plants in zones $userZones")
                 Result.Success(filtered)
             } else {
                 Result.Success(sites)
             }
+            result
         }.catch {
             com.herbal.utils.LOG("MuseumRepository.getAllSites() - ERROR: ${it.message}")
             emit(Result.Error(it))

@@ -14,4 +14,10 @@
     <string name="automatic">Automatikus</string>
     <string name="selected">Kiválasztva</string>
     <string name="set_wallpaper">Beállítás Háttérképként</string>
+
+    <string name="use_location_plants">Csak helyi növények</string>
+    <string name="onboarding_title">Fedezd fel a helyi növényeket</string>
+    <string name="onboarding_message">Nyisd meg az oldalsó menüt, és engedélyezd a \'Csak helyi növények\' opciót, hogy lásd a területeden természetesen növő növényeket.</string>
+    <string name="onboarding_ok">Értem</string>
+    <string name="location_permission_denied">Helymeghatározás megtagadva. Szűrő letiltva.</string>
 </resources>

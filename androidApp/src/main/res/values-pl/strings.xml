@@ -14,4 +14,10 @@
     <string name="automatic">Automatyczny</string>
     <string name="selected">Wybrane</string>
     <string name="set_wallpaper">Ustaw jako Tapetę</string>
+
+    <string name="use_location_plants">Tylko lokalne rośliny</string>
+    <string name="onboarding_title">Odkryj lokalne rośliny</string>
+    <string name="onboarding_message">Otwórz menu boczne i włącz \'Tylko lokalne rośliny\', aby zobaczyć rośliny rosnące naturalnie w Twoim regionie.</string>
+    <string name="onboarding_ok">Rozumiem</string>
+    <string name="location_permission_denied">Odmowa dostępu do lokalizacji. Filtr wyłączony.</string>
 </resources>

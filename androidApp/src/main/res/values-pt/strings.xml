@@ -26,4 +26,10 @@
         <item quantity="one">%d Planta</item>
         <item quantity="other">%d Plantas</item>
     </plurals>
+
+    <string name="use_location_plants">Apenas plantas locais</string>
+    <string name="onboarding_title">Descubra plantas locais</string>
+    <string name="onboarding_message">Abra o menu lateral e ative \'Apenas plantas locais\' para ver plantas que crescem nativamente na sua região.</string>
+    <string name="onboarding_ok">Entendi</string>
+    <string name="location_permission_denied">Permissão de localização negada. Filtro desativado.</string>
 </resources>

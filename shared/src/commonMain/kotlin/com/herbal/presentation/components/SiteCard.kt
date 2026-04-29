@@ -24,6 +24,13 @@ private const val TAG = "SiteCard"
 expect fun getSiteDrawableId(site: HeritageSite): Int?
 
 /**
+ * Get all drawable resource IDs for a site (primary + numbered variants _2.._6).
+ * Returns an empty list if no image is found at all.
+ */
+@Composable
+expect fun getSiteDrawableIds(site: HeritageSite): List<Int>
+
+/**
  * Herbal-specific SiteCard that displays plant names in the current locale.
  * Wraps GenericSiteCard from whitelabel-platform which uses localizedFields
  * from the DisplayableItem interface for name/description localization.
@@ -35,7 +42,8 @@ fun SiteCard(
     onFavoriteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val drawableId = getSiteDrawableId(site)
+    val drawableIds = getSiteDrawableIds(site)
+    val drawableId = drawableIds.firstOrNull() ?: getSiteDrawableId(site)
     val imageUrl = site.imageUrl?.split(",")?.firstOrNull()?.trim()
     val selectedLanguage by LanguagePreferences.selectedLanguage.collectAsState()
     val languageCode = selectedLanguage?.code ?: "en"
@@ -55,6 +63,7 @@ fun SiteCard(
         modifier = modifier,
         imageUrl = imageUrl,
         drawableResourceId = drawableId,
+        drawableResourceIds = drawableIds,
         imageHeight = 120.dp,
         cardColors = androidx.compose.material3.CardDefaults.cardColors(
             containerColor = site.getCardBackgroundColor()

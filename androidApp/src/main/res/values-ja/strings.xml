@@ -26,4 +26,10 @@
         <item quantity="one">%d 植物</item>
         <item quantity="other">%d 植物</item>
     </plurals>
+
+    <string name="use_location_plants">地元の植物のみ</string>
+    <string name="onboarding_title">地元の植物を発見</string>
+    <string name="onboarding_message">サイドメニューを開き「地元の植物のみ」を有効にして、あなたの地域に自生する植物を表示してください。</string>
+    <string name="onboarding_ok">了解</string>
+    <string name="location_permission_denied">位置情報の許可が拒否されました。フィルター無効。</string>
 </resources>

@@ -1,23 +1,31 @@
 package com.herbal.presentation.screens.site
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.DisposableEffect
+import kotlinx.coroutines.delay
 import com.herbal.utils.LanguagePreferences
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import com.herbal.presentation.components.getSiteDrawableIds
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
@@ -117,6 +125,7 @@ fun SiteDetailScreen(
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun SiteDetailContent(
     site: HeritageSite,
@@ -131,24 +140,64 @@ private fun SiteDetailContent(
             .padding(16.dp)
     ) {
         val context = LocalPlatformContext.current
-        val resourceName = site.name.toDrawableResourceName()
-        val drawableId = getDrawableResourceId(resourceName)
-        val imageUrl = site.imageUrl?.split(",")?.firstOrNull()?.trim()
-        val imageModel = if (drawableId != 0) drawableId else imageUrl
-        if (drawableId == 0) {
-            LOG("ERROR WE COULD NOT FIND DRAWABLE ID FOR $resourceName  from ${site.name}")
+        val drawableIds = getSiteDrawableIds(site)
+        val imageModels: List<Any> = drawableIds.ifEmpty {
+            site.imageUrl
+                ?.split(",")
+                ?.map { it.trim() }
+                ?.filter { it.isNotEmpty() }
+                ?: emptyList()
         }
 
-        if (imageModel != null) {
-            AsyncImage(
-                model = ImageRequest.Builder(context).data(imageModel).build(),
-                contentDescription = site.getLocalizedName(),
+        if (imageModels.isNotEmpty()) {
+            val pagerState = rememberPagerState { imageModels.size }
+            if (imageModels.size > 1) {
+                LaunchedEffect(Unit) {
+                    while (true) {
+                        delay(3000L)
+                        pagerState.animateScrollToPage((pagerState.currentPage + 1) % imageModels.size)
+                    }
+                }
+            }
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
-                    .clip(RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.Crop
-            )
+                    .height(220.dp)
+                    .clip(RoundedCornerShape(8.dp))
+            ) {
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier.fillMaxSize()
+                ) { page ->
+                    AsyncImage(
+                        model = ImageRequest.Builder(context).data(imageModels[page]).build(),
+                        contentDescription = site.getLocalizedName(),
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+                if (imageModels.size > 1) {
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        repeat(imageModels.size) { i ->
+                            Box(
+                                modifier = Modifier
+                                    .size(if (pagerState.currentPage == i) 8.dp else 6.dp)
+                                    .clip(CircleShape)
+                                    .background(
+                                        if (pagerState.currentPage == i) Color.White
+                                        else Color.White.copy(alpha = 0.5f)
+                                    )
+                            )
+                        }
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(16.dp))
         }
 

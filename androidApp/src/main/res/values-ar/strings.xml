@@ -26,4 +26,10 @@
         <item quantity="one">%d نبات</item>
         <item quantity="other">%d نباتات</item>
     </plurals>
+
+    <string name="use_location_plants">النباتات المحلية فقط</string>
+    <string name="onboarding_title">اكتشف النباتات المحلية</string>
+    <string name="onboarding_message">افتح القائمة الجانبية وفعّل \'النباتات المحلية فقط\' لرؤية النباتات التي تنمو بشكل طبيعي في منطقتك.</string>
+    <string name="onboarding_ok">فهمت</string>
+    <string name="location_permission_denied">تم رفض إذن الموقع. تم تعطيل التصفية.</string>
 </resources>

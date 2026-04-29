@@ -6,13 +6,10 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-/**
- * Returns the last known GPS location as (latitude, longitude), or null if unavailable.
- * Requires ACCESS_FINE_LOCATION permission to be already granted before calling.
- */
 @SuppressLint("MissingPermission")
-suspend fun getLocationLastKnown(context: Context): Pair<Double, Double>? =
-    suspendCancellableCoroutine { cont ->
+actual suspend fun getLocationLastKnown(context: Any): Pair<Double, Double>? {
+    if (context !is Context) return null
+    return suspendCancellableCoroutine { cont ->
         val client = LocationServices.getFusedLocationProviderClient(context)
         client.lastLocation
             .addOnSuccessListener { location ->
@@ -26,3 +23,4 @@ suspend fun getLocationLastKnown(context: Context): Pair<Double, Double>? =
                 cont.resume(null)
             }
     }
+}

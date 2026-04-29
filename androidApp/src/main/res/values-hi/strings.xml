@@ -26,4 +26,10 @@
         <item quantity="one">%d वनस्पति</item>
         <item quantity="other">%d वनस्पतियाँ</item>
     </plurals>
+
+    <string name="use_location_plants">केवल स्थानीय पौधे</string>
+    <string name="onboarding_title">स्थानीय पौधों की खोज करें</string>
+    <string name="onboarding_message">साइड मेनू खोलें और \'केवल स्थानीय पौधे\' को सक्षम करें ताकि आप अपने क्षेत्र में प्राकृतिक रूप से उगने वाले पौधों को देख सकें।</string>
+    <string name="onboarding_ok">समझ गए</string>
+    <string name="location_permission_denied">स्थान अनुमति अस्वीकृत। फ़िल्टर अक्षम।</string>
 </resources>
