@@ -1,5 +1,4 @@
-/androidApp/build/
-/shared/build/
+**/build/
 /.gradle/
 /androidApp/release/
 uploadKey.jks
