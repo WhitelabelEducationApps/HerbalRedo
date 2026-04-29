@@ -72,6 +72,8 @@ kotlin {
                 implementation("androidx.palette:palette:1.0.0")
                 // DataStore for preferences
                 implementation(libs.androidx.datastore)
+                // Location services for GPS-based plant filtering
+                implementation(libs.play.services.location)
             }
         }
 

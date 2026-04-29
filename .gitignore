@@ -6,3 +6,4 @@ uploadKey.jks
 upload_certificate.pem
 *.jks
 *.keystore
+*.pyc

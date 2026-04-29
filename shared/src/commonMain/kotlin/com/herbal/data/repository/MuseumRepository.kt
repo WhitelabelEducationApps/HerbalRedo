@@ -5,10 +5,12 @@ import com.herbal.data.mapper.HeritageSiteMapper.toHeritageSite
 import com.herbal.data.mapper.HeritageSiteMapper.toHeritageSites
 import com.herbal.data.models.Country
 import com.herbal.data.models.HeritageSite
+import com.herbal.utils.LocationFilterPreferences
 import com.whitelabel.core.domain.model.Result
 import com.whitelabel.core.domain.model.GroupMetadata
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
@@ -22,19 +24,29 @@ class MuseumRepository(private val dataSource: HeritageSiteLocalDataSource) : IM
 
     override fun getAllSites(): Flow<Result<List<HeritageSite>>> {
         com.herbal.utils.LOG("MuseumRepository.getAllSites() - CALLED")
-        return dataSource.getAllSites()
-            .map<List<com.herbal.data.local.Museum_item>, Result<List<HeritageSite>>> {
-                com.herbal.utils.LOG("MuseumRepository.getAllSites() - Mapping ${it.size} items")
-                com.herbal.utils.checkMainThread()
-                val result = com.herbal.utils.measureTimeAndLog("getAllSites mapping ${it.size} items") {
-                    it.toHeritageSites()
+        return combine(
+            dataSource.getAllSites(),
+            LocationFilterPreferences.useLocationFilter,
+            LocationFilterPreferences.currentUserZone
+        ) { items, filterOn, userZone ->
+            com.herbal.utils.LOG("MuseumRepository.getAllSites() - Mapping ${items.size} items, filterOn=$filterOn, zone=$userZone")
+            com.herbal.utils.checkMainThread()
+            val sites = com.herbal.utils.measureTimeAndLog("getAllSites mapping ${items.size} items") {
+                items.toHeritageSites()
+            }
+            if (filterOn && userZone != null) {
+                val filtered = sites.filter { site ->
+                    site.author?.split(",")?.any { it.trim() == userZone } == true
                 }
-                Result.Success(result)
+                com.herbal.utils.LOG("MuseumRepository.getAllSites() - Location filter active: ${filtered.size}/${sites.size} plants in $userZone")
+                Result.Success(filtered)
+            } else {
+                Result.Success(sites)
             }
-            .catch {
-                com.herbal.utils.LOG("MuseumRepository.getAllSites() - ERROR: ${it.message}")
-                emit(Result.Error(it))
-            }
+        }.catch {
+            com.herbal.utils.LOG("MuseumRepository.getAllSites() - ERROR: ${it.message}")
+            emit(Result.Error(it))
+        }
     }
 
     override fun getSiteById(id: Long): Flow<Result<HeritageSite?>> {

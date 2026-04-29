@@ -13,6 +13,7 @@ ktor = "3.0.1"
 koin = "3.5.3"
 mapsCompose = "4.3.3"
 playServicesMaps = "19.2.0"
+playServicesLocation = "21.3.0"
 material = "1.6.8"
 mockk = "1.13.9"
 turbine = "1.0.0"
@@ -46,6 +47,7 @@ maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = 
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsCompose" }
 androidx-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -11,6 +11,10 @@ import coil3.util.DebugLogger
 import com.herbal.di.initKoin
 import com.herbal.utils.LanguagePreferences
 import com.herbal.utils.DataStoreLanguagePersistence
+import com.herbal.utils.LocationFilterPreferences
+import com.herbal.utils.DataStoreLocationFilterPersistence
+import com.herbal.utils.OnboardingPreferences
+import com.herbal.utils.DataStoreOnboardingPersistence
 import com.herbal.utils.LocaleManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +45,10 @@ class HerbalApplication : Application(), SingletonImageLoader.Factory {
 
         // Initialize language persistence
         LanguagePreferences.initPersistence(DataStoreLanguagePersistence(this))
+
+        // Initialize app preferences persistence
+        LocationFilterPreferences.initPersistence(DataStoreLocationFilterPersistence(this))
+        OnboardingPreferences.initPersistence(DataStoreOnboardingPersistence(this))
 
         // Set initial app locale based on saved language preference
         val savedLanguage = LanguagePreferences.getEffectiveLanguage()

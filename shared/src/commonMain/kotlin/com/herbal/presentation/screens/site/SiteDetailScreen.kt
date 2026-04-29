@@ -8,8 +8,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.DisposableEffect
+import com.herbal.utils.LanguagePreferences
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -47,7 +50,10 @@ fun SiteDetailScreen(
     appConfig: AppConfig
 ) {
     logLifecycle(TAG, "Composable entered")
-    
+
+    val selectedLanguage by LanguagePreferences.selectedLanguage.collectAsState()
+    val languageCode = selectedLanguage?.code ?: "en"
+
     DisposableEffect(Unit) {
         debugLogD(TAG, "SiteDetailScreen mounted")
         onDispose {
@@ -61,7 +67,7 @@ fun SiteDetailScreen(
             logUserAction(TAG, "clicked back")
             onBackClick()
         },
-        languageCode = "en",
+        languageCode = languageCode,
         topBarColor = Color(0xFF1976D2),
         topBarContentColor = Color.White,
         floatingActionButton = { site ->
