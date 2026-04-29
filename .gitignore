@@ -1,5 +1,6 @@
 **/build/
-/.gradle/
+**/.gradle/
+**/.idea/
 /androidApp/release/
 uploadKey.jks
 upload_certificate.pem
