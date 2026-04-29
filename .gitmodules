@@ -1,0 +1,7 @@
+[submodule "whitelabel-core"]
+	path = whitelabel-core
+	url = https://github.com/WhitelabelEducationApps/whitelabel-core.git
+
+[submodule "whitelabel-platform"]
+	path = whitelabel-platform
+	url = https://github.com/WhitelabelEducationApps/whitelabel-platform.git
