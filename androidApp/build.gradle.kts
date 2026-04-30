@@ -4,6 +4,7 @@ import java.io.FileInputStream
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.composeCompiler)
 }
 
 android {
@@ -21,10 +22,10 @@ android {
 
     defaultConfig {
         applicationId = "com.beacon.medicinalplantsnew"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
-        versionCode = 70
-        versionName = "1.1.4"
+        versionCode = 71
+        versionName = "1.1.5"
 
         val properties = Properties()
         val localPropertiesFile = rootProject.file("local.properties")
@@ -51,23 +52,21 @@ android {
         buildConfig = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     packaging {
         jniLibs {
             useLegacyPackaging = false
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 

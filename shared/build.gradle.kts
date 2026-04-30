@@ -3,14 +3,19 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.composeCompiler)
+}
+
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "herbalredo.shared.generated.resources"
+    generateResClass = always
 }
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }
 
@@ -35,6 +40,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.ui)
                 implementation(compose.components.resources)
+                implementation(compose.materialIconsExtended)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.sqldelight.coroutines)
                 implementation(libs.kermit)
@@ -49,8 +55,13 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.mockk)
                 implementation(libs.turbine)
+            }
+        }
+
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(libs.mockk)
             }
         }
 
@@ -97,7 +108,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
     }
 
     compileOptions {

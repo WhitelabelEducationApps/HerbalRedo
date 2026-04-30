@@ -15,7 +15,7 @@ import com.whitelabel.platform.utils.extractColorsFromDrawable
  * @return ExtractedColors or null if extraction fails
  */
 @Composable
-fun rememberExtractedColors(siteId: Long, drawableResourceId: Int?): ExtractedColors? {
+actual fun rememberExtractedColors(siteId: Long, drawableResourceId: Int?): ExtractedColors? {
     val context = LocalContext.current
     
     return if (drawableResourceId != null && drawableResourceId != 0) {

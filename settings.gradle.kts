@@ -7,18 +7,31 @@ includeBuild("whitelabel-core")
 includeBuild("whitelabel-platform")
 
 pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            // AGP is loaded onto the composite classpath by included builds (androidLibrary apply false)
+            // but without version metadata. Route it through useModule to bypass the
+            // AlreadyOnClasspathPluginResolver version check.
+            if (requested.id.id == "com.android.kotlin.multiplatform.library") {
+                useModule("com.android.tools.build:gradle:${requested.version}")
+            }
+        }
+    }
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
-        mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }

@@ -37,15 +37,15 @@ CREATE TABLE IF NOT EXISTS "museum_item" (
 	`description_zh`	TEXT,
 	`paintingname_zh`	TEXT,
 	`style_zh`	TEXT,
+	`isFavourite`	TEXT,
+	`viewed`	TEXT,
+	`visited`	TEXT,
 	`description_ar`	TEXT,
 	`paintingname_ar`	TEXT,
 	`style_ar`	TEXT,
 	`description_hi`	TEXT,
 	`paintingname_hi`	TEXT,
-	`style_hi`	TEXT,
-	`isFavourite`	TEXT,
-	`viewed`	TEXT,
-	`visited`	TEXT
+	`style_hi`	TEXT
 );
 
 selectAll:

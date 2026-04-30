@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Herbal Heritage</string>
+    <string name="app_name">Herbal Remedies</string>
 
     <!-- Search UI -->
-    <string name="search_placeholder">Search...</string>
+    <string name="search_placeholder">Search…</string>
     <string name="close_search">Close search</string>
     <string name="clear_search">Clear search</string>
     <string name="search">Search</string>
