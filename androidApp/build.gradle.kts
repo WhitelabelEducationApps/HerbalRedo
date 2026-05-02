@@ -84,3 +84,29 @@ dependencies {
     implementation(libs.koin.compose)
     implementation("androidx.palette:palette-ktx:1.0.0")
 }
+
+// ── Pre-extract plant colors at build time ───────────────────────────────────
+
+val pythonCmd = if (System.getProperty("os.name").lowercase().contains("windows")) "python" else "python3"
+
+val extractColors by tasks.registering(Exec::class) {
+    description = "Pre-extract dominant colors from plant drawables (requires Pillow: pip install Pillow)"
+    group = "build"
+
+    val scriptFile  = rootProject.file("scripts/extract_colors.py")
+    val drawableDir = file("src/main/res/drawable-nodpi")
+    val outputFile  = file("src/main/assets/extracted_colors.json")
+
+    // Gradle up-to-date check: skip if drawables unchanged and JSON exists
+    inputs.dir(drawableDir)
+    outputs.file(outputFile)
+
+    commandLine(pythonCmd, scriptFile.absolutePath,
+        "--drawable-dir", drawableDir.absolutePath,
+        "--output",       outputFile.absolutePath)
+
+    doFirst { file("src/main/assets").mkdirs() }
+}
+
+tasks.named("assembleRelease") { dependsOn(extractColors) }
+tasks.named("bundleRelease")   { dependsOn(extractColors) }
