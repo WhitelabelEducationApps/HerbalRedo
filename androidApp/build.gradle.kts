@@ -76,7 +76,6 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.ktor)
@@ -86,8 +85,13 @@ dependencies {
 }
 
 // ── Pre-extract plant colors at build time ───────────────────────────────────
+// Output goes to build/ so Gradle's task-graph wiring is correct.
+// Registering it as an assets srcDir makes AGP automatically declare
+// the dependency for mergeAssets, lint, model writers, and everything else.
 
 val pythonCmd = if (System.getProperty("os.name").lowercase().contains("windows")) "python" else "python3"
+
+val extractColorsOutputDir = layout.buildDirectory.dir("generated/extractColors")
 
 val extractColors by tasks.registering(Exec::class) {
     description = "Pre-extract dominant colors from plant drawables (requires Pillow: pip install Pillow)"
@@ -95,20 +99,24 @@ val extractColors by tasks.registering(Exec::class) {
 
     val scriptFile  = rootProject.file("scripts/extract_colors.py")
     val drawableDir = file("src/main/res/drawable-nodpi")
-    val outputFile  = file("src/main/assets/extracted_colors.json")
+    val outputFile  = extractColorsOutputDir.map { it.file("extracted_colors.json") }
 
-    // Gradle up-to-date check: skip if drawables unchanged and JSON exists
     inputs.dir(drawableDir)
     outputs.file(outputFile)
 
+    doFirst { outputFile.get().asFile.parentFile.mkdirs() }
+
     commandLine(pythonCmd, scriptFile.absolutePath,
         "--drawable-dir", drawableDir.absolutePath,
-        "--output",       outputFile.absolutePath)
-
-    doFirst { file("src/main/assets").mkdirs() }
+        "--output",       outputFile.get().asFile.absolutePath)
 }
 
-tasks.matching {
-    it.name == "assembleRelease" || it.name == "bundleRelease" ||
-    (it.name.startsWith("lint") && it.name.contains("Release"))
-}.configureEach { dependsOn(extractColors) }
+// Registering the output dir as an asset source lets AGP handle all task
+// ordering — mergeAssets, lintVital*, generateLintVitalReportModel, etc.
+android {
+    sourceSets {
+        getByName("main") {
+            assets.srcDir(extractColorsOutputDir)
+        }
+    }
+}
