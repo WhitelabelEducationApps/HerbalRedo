@@ -108,5 +108,7 @@ val extractColors by tasks.registering(Exec::class) {
     doFirst { file("src/main/assets").mkdirs() }
 }
 
-tasks.matching { it.name == "assembleRelease" || it.name == "bundleRelease" }
-    .configureEach { dependsOn(extractColors) }
+tasks.matching {
+    it.name == "assembleRelease" || it.name == "bundleRelease" ||
+    (it.name.startsWith("lint") && it.name.contains("Release"))
+}.configureEach { dependsOn(extractColors) }
