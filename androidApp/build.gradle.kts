@@ -1,5 +1,7 @@
 import java.util.Properties
 import java.io.FileInputStream
+import javax.inject.Inject
+import org.gradle.process.ExecOperations
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -85,38 +87,55 @@ dependencies {
 }
 
 // ── Pre-extract plant colors at build time ───────────────────────────────────
-// Output goes to build/ so Gradle's task-graph wiring is correct.
-// Registering it as an assets srcDir makes AGP automatically declare
-// the dependency for mergeAssets, lint, model writers, and everything else.
+// Custom task type so AGP's Variant API can wire it as a generated asset
+// source — no manual dependsOn needed for any lint/merge/model task.
 
-val pythonCmd = if (System.getProperty("os.name").lowercase().contains("windows")) "python" else "python3"
+abstract class ExtractColorsTask @Inject constructor(
+    private val execOps: ExecOperations
+) : DefaultTask() {
 
-val extractColorsOutputDir = layout.buildDirectory.dir("generated/extractColors")
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val drawableDir: DirectoryProperty
 
-val extractColors by tasks.registering(Exec::class) {
-    description = "Pre-extract dominant colors from plant drawables (requires Pillow: pip install Pillow)"
-    group = "build"
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val scriptFile: RegularFileProperty
 
-    val scriptFile  = rootProject.file("scripts/extract_colors.py")
-    val drawableDir = file("src/main/res/drawable-nodpi")
-    val outputFile  = extractColorsOutputDir.map { it.file("extracted_colors.json") }
+    @get:OutputDirectory
+    abstract val outputDir: DirectoryProperty
 
-    inputs.dir(drawableDir)
-    outputs.file(outputFile)
+    @get:Input
+    abstract val pythonCmd: Property<String>
 
-    doFirst { outputFile.get().asFile.parentFile.mkdirs() }
-
-    commandLine(pythonCmd, scriptFile.absolutePath,
-        "--drawable-dir", drawableDir.absolutePath,
-        "--output",       outputFile.get().asFile.absolutePath)
+    @TaskAction
+    fun run() {
+        val outDir = outputDir.get().asFile
+        outDir.mkdirs()
+        execOps.exec {
+            commandLine(
+                pythonCmd.get(),
+                scriptFile.get().asFile.absolutePath,
+                "--drawable-dir", drawableDir.get().asFile.absolutePath,
+                "--output",       java.io.File(outDir, "extracted_colors.json").absolutePath
+            )
+        }
+    }
 }
 
-// Registering the output dir as an asset source lets AGP handle all task
-// ordering — mergeAssets, lintVital*, generateLintVitalReportModel, etc.
-android {
-    sourceSets {
-        getByName("main") {
-            assets.srcDir(extractColorsOutputDir)
-        }
+val extractColors = tasks.register<ExtractColorsTask>("extractColors") {
+    description = "Pre-extract dominant colors from plant drawables (requires: pip install Pillow)"
+    group = "build"
+    pythonCmd.set(if (System.getProperty("os.name").lowercase().contains("windows")) "python" else "python3")
+    scriptFile.set(rootProject.file("scripts/extract_colors.py"))
+    drawableDir.set(file("src/main/res/drawable-nodpi"))
+    outputDir.set(layout.buildDirectory.dir("generated/extractColors"))
+}
+
+// addGeneratedSourceDirectory properly wires extractColors into every
+// AGP task that consumes assets (mergeAssets, lintVital*, model writers…).
+androidComponents {
+    onVariants { variant ->
+        variant.sources.assets?.addGeneratedSourceDirectory(extractColors) { it.outputDir }
     }
 }
