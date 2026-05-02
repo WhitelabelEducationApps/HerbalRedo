@@ -1,4 +1,5 @@
 import java.util.Properties
+import java.io.File
 import java.io.FileInputStream
 import javax.inject.Inject
 import org.gradle.process.ExecOperations
@@ -117,7 +118,7 @@ abstract class ExtractColorsTask @Inject constructor(
                 pythonCmd.get(),
                 scriptFile.get().asFile.absolutePath,
                 "--drawable-dir", drawableDir.get().asFile.absolutePath,
-                "--output",       java.io.File(outDir, "extracted_colors.json").absolutePath
+                "--output",       File(outDir, "extracted_colors.json").absolutePath
             )
         }
     }
