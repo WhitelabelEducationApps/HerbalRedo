@@ -72,9 +72,9 @@ kotlin {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material3:material3")
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -82,7 +82,7 @@ dependencies {
     implementation(libs.coil.network.ktor)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
-    implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation(libs.androidx.palette.ktx)
 }
 
 // ── Pre-extract plant colors at build time ───────────────────────────────────
@@ -108,5 +108,5 @@ val extractColors by tasks.registering(Exec::class) {
     doFirst { file("src/main/assets").mkdirs() }
 }
 
-tasks.named("assembleRelease") { dependsOn(extractColors) }
-tasks.named("bundleRelease")   { dependsOn(extractColors) }
+tasks.matching { it.name == "assembleRelease" || it.name == "bundleRelease" }
+    .configureEach { dependsOn(extractColors) }
