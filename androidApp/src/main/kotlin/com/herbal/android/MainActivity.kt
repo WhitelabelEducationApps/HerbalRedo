@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.whitelabel.platform.presentation.theme.HerbalTheme
 import com.whitelabel.platform.WhitelabelActivity
+import com.whitelabel.platform.presentation.AppNavigation
 
 class MainActivity : WhitelabelActivity() {
     @Composable

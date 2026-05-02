@@ -1,7 +1,10 @@
 [versions]
+composeBom = "2024.02.00"
 kotlin = "2.3.21"
 compose = "1.7.3"
 agp = "9.2.0"
+palette = "1.0.0"
+paletteKtx = "1.0.0"
 sqldelight = "2.0.1"
 coroutines = "1.8.0"
 lifecycle = "2.8.7"
@@ -20,6 +23,11 @@ turbine = "1.0.0"
 datastore = "1.0.0"
 
 [libraries]
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-palette-core = { module = "androidx.palette:palette", version.ref = "palette" }
+androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }

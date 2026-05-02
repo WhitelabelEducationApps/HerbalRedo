@@ -62,7 +62,7 @@ kotlin {
                 implementation(libs.ktor.client.logging)
                 implementation(libs.koin.android)
                 implementation(libs.koin.compose)
-                implementation("androidx.palette:palette:1.0.0")
+                implementation(libs.androidx.palette.core)
                 implementation(libs.androidx.datastore)
                 implementation(libs.play.services.location)
                 implementation(libs.androidx.activity.compose)
