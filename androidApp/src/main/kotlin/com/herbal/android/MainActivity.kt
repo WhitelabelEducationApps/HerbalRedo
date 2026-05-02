@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.herbal.presentation.theme.HerbalTheme
+import com.whitelabel.platform.presentation.theme.HerbalTheme
 import com.whitelabel.platform.WhitelabelActivity
 
 class MainActivity : WhitelabelActivity() {

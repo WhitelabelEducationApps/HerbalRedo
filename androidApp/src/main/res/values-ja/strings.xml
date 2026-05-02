@@ -7,13 +7,10 @@
     <string name="search">検索</string>
     <string name="menu">メニュー</string>
     <string name="back">戻る</string>
-    <string name="add_favorites">お気に入りに追加</string>
-    <string name="remove_favorites">お気に入りから削除</string>
     <string name="wallpaper_success">壁紙が正常に設定されました！</string>
     <string name="select_language">言語を選択</string>
     <string name="automatic">自動</string>
     <string name="selected">選択済み</string>
-    <string name="set_wallpaper">壁紙として設定</string>
 
     <!-- View Options -->
     <string name="grid_view">グリッドビュー</string>
@@ -22,12 +19,9 @@
     <string name="view_options">表示オプション</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d 植物</item>
-        <item quantity="other">%d 植物</item>
-    </plurals>
 
-    <string name="use_location_plants">地元の植物のみ</string>
+    <string name="location_relevant_items_only">関連する項目のみ</string>
+    <string name="location_filter_banner">%1$d/%2$d件がご希望の場所に合います</string>
     <string name="onboarding_title">地元の植物を発見</string>
     <string name="onboarding_message">サイドメニューを開き「地元の植物のみ」を有効にして、あなたの地域に自生する植物を表示してください。</string>
     <string name="onboarding_ok">了解</string>

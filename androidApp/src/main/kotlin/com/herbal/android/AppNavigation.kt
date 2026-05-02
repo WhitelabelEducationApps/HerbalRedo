@@ -12,17 +12,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.herbal.presentation.screens.detail.DetailScreen
-import com.herbal.presentation.screens.detail.DetailViewModel
-import com.herbal.presentation.screens.home.HomeScreen
-import com.herbal.presentation.screens.home.HomeViewModel
-import com.whitelabel.core.AppConfig
+import com.whitelabel.platform.presentation.screens.detail.DetailScreen
+import com.whitelabel.platform.presentation.screens.home.HomeScreen
+import com.whitelabel.core.presentation.home.HomeViewModel
 import com.whitelabel.core.presentation.home.ViewMode
-import com.herbal.presentation.screens.language.LanguageSelectionScreen
-import com.herbal.presentation.screens.language.LanguageSelectionViewModel
-import com.herbal.presentation.screens.site.SiteDetailScreen
-import com.herbal.presentation.screens.site.SiteDetailViewModel
+import com.whitelabel.platform.data.models.CatalogItem
+import com.whitelabel.platform.presentation.screens.language.LanguageSelectionScreen
+import com.whitelabel.platform.presentation.screens.site.SiteDetailScreen
+import com.whitelabel.core.presentation.detail.ItemDetailViewModel
+import com.whitelabel.core.AppConfig
 import com.herbal.utils.LOG
+import com.whitelabel.core.presentation.language.LanguageSelectionViewModel
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
@@ -34,14 +34,16 @@ fun AppNavigation() {
     val scope = rememberCoroutineScope()
 
     // HomeViewModel is a Koin singleton — same instance everywhere
-    val homeViewModel: HomeViewModel = koinInject()
+    val homeViewModel: HomeViewModel<CatalogItem> = koinInject()
 
     NavHost(navController = navController, startDestination = "main_graph") {
         navigation(startDestination = "home", route = "main_graph") {
             composable("home") {
                 LOG("HomeViewModel: $homeViewModel")
+                val appConfig: AppConfig = koinInject()
                 HomeScreen(
                     viewModel = homeViewModel,
+                    appConfig = appConfig,
                     onSiteClick = { plantId -> navController.navigate("site/$plantId") },
                     onNavigateToLanguage = { navController.navigate("language") },
                     snackbarHostState = snackbarHostState
@@ -53,7 +55,7 @@ fun AppNavigation() {
                 arguments = listOf(navArgument("siteId") { type = NavType.LongType })
             ) { backStackEntry ->
                 val siteId = backStackEntry.arguments?.getLong("siteId") ?: return@composable
-                val viewModel: SiteDetailViewModel = koinInject { parametersOf(siteId) }
+                val viewModel: ItemDetailViewModel<CatalogItem> = koinInject { parametersOf(siteId) }
                 val appConfig: AppConfig = koinInject()
 
                 SiteDetailScreen(
@@ -77,9 +79,7 @@ fun AppNavigation() {
             ) { backStackEntry ->
                 LOG("AppNavigation - COMPOSING detail route")
                 val plantId = backStackEntry.arguments?.getLong("siteId") ?: return@composable
-                LOG("AppNavigation - detail route plantId=$plantId")
-                val viewModel: DetailViewModel = koinInject { parametersOf(plantId) }
-                LOG("AppNavigation - DetailViewModel obtained: $viewModel")
+                val viewModel: ItemDetailViewModel<CatalogItem> = koinInject { parametersOf(plantId) }
 
                 DetailScreen(
                     viewModel = viewModel,

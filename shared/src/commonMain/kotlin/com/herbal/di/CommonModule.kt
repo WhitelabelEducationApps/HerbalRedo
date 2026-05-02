@@ -3,18 +3,19 @@ package com.herbal.di
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.annotation.ExperimentalCoilApi
-import com.herbal.data.HeritageLanguageProvider
-import com.herbal.data.datasource.HeritageSiteLocalDataSource
-import com.herbal.data.repository.IMuseumRepository
-import com.herbal.data.repository.MuseumRepository
-import com.herbal.domain.usecases.GetSitesUseCase
-import com.herbal.domain.usecases.SearchSiteUseCase
-import com.herbal.domain.usecases.ToggleFavoriteUseCase
-import com.herbal.presentation.HeritageItemGrouper
+import com.whitelabel.platform.data.CatalogLanguageProvider
+import com.whitelabel.platform.data.datasource.CatalogLocalDataSource
+import com.whitelabel.platform.data.repository.CatalogRepository
 import com.herbal.utils.ImagePreloader
 import com.whitelabel.core.domain.language.LanguageProvider
+import com.whitelabel.core.domain.repository.ItemRepository
 import com.whitelabel.core.domain.usecase.GetItemDetailUseCase
+import com.whitelabel.core.domain.usecase.GetItemsUseCase
+import com.whitelabel.core.domain.usecase.SearchItemsUseCase
+import com.whitelabel.core.domain.usecase.ToggleFavoriteUseCase
 import com.whitelabel.core.presentation.home.ItemGrouper
+import com.whitelabel.platform.data.models.CatalogItem
+import com.whitelabel.platform.presentation.HeritageItemGrouper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
@@ -29,39 +30,39 @@ val commonModule = module {
 
     // Data Source - Singleton
     single {
-        com.herbal.utils.LOG("DI - Creating HeritageSiteLocalDataSource (SINGLETON)")
-        HeritageSiteLocalDataSource(get(), get())
+        com.herbal.utils.LOG("DI - Creating CatalogLocalDataSource (SINGLETON)")
+        CatalogLocalDataSource(get(), get())
     }
 
     // Repository - bind to interface to enable testing and decoupling
-    single<IMuseumRepository> {
-        com.herbal.utils.LOG("DI - Creating MuseumRepository (SINGLETON)")
-        MuseumRepository(get())
+    single<ItemRepository<CatalogItem>> {
+        com.herbal.utils.LOG("DI - Creating CatalogRepository (SINGLETON)")
+        CatalogRepository(get()) { com.whitelabel.platform.utils.LocalizationManager.getCurrentLanguageCode() }
     }
 
     // Language Provider - Singleton
-    single<LanguageProvider> { HeritageLanguageProvider() }
+    single<LanguageProvider> { CatalogLanguageProvider() }
 
-    // Use Cases - Factory (now backed by core generic use cases via typealiases)
+    // Use Cases - Factory
     factory {
-        com.herbal.utils.LOG("DI - Creating NEW GetSitesUseCase")
-        GetSitesUseCase(get<IMuseumRepository>())
+        com.herbal.utils.LOG("DI - Creating NEW GetItemsUseCase")
+        GetItemsUseCase(get<ItemRepository<CatalogItem>>())
     }
     factory {
-        com.herbal.utils.LOG("DI - Creating NEW SearchSiteUseCase")
-        SearchSiteUseCase(get<IMuseumRepository>(), get())
+        com.herbal.utils.LOG("DI - Creating NEW SearchItemsUseCase")
+        SearchItemsUseCase(get<ItemRepository<CatalogItem>>(), get())
     }
     factory {
         com.herbal.utils.LOG("DI - Creating NEW ToggleFavoriteUseCase")
-        ToggleFavoriteUseCase(get<IMuseumRepository>())
+        ToggleFavoriteUseCase(get<ItemRepository<CatalogItem>>())
     }
     factory {
         com.herbal.utils.LOG("DI - Creating NEW GetItemDetailUseCase")
-        GetItemDetailUseCase(get<IMuseumRepository>())
+        GetItemDetailUseCase(get<ItemRepository<CatalogItem>>())
     }
 
     // ItemGrouper - Heritage-specific: groups by country
-    single<ItemGrouper<com.herbal.data.models.HeritageSite>> { HeritageItemGrouper() }
+    single<ItemGrouper<CatalogItem>> { HeritageItemGrouper() }
 
     // Image Preloader - Singleton
     single { (context: PlatformContext) ->

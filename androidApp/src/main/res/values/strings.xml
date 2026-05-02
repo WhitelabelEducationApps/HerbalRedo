@@ -13,12 +13,9 @@
     <string name="back">Back</string>
 
     <!-- Favorites -->
-    <string name="add_favorites">Add to favorites</string>
-    <string name="remove_favorites">Remove from favorites</string>
 
     <!-- Messages -->
     <string name="wallpaper_success">Wallpaper set successfully!</string>
-    <string name="set_wallpaper">Set as Wallpaper</string>
 
     <!-- Language -->
     <string name="select_language">Select Language</string>
@@ -30,7 +27,8 @@
     <string name="map_view">Map View</string>
     <string name="language">Language</string>
     <string name="view_options">View Options</string>
-    <string name="use_location_plants">Local Plants Only</string>
+    <string name="location_relevant_items_only">Location relevant items only</string>
+    <string name="location_filter_banner">%1$d/%2$d items fit your location</string>
 
     <!-- Location Filter / Onboarding -->
     <string name="onboarding_title">Discover Local Plants</string>
@@ -39,14 +37,6 @@
     <string name="location_permission_denied">Location permission denied. Filter disabled.</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d Plant</item>
-        <item quantity="other">%d Plants</item>
-    </plurals>
 
     <!-- Category Count -->
-    <plurals name="category_item_count">
-        <item quantity="one">%s (%d)</item>
-        <item quantity="other">%s (%d)</item>
-    </plurals>
 </resources>

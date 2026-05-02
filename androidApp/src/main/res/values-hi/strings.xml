@@ -7,13 +7,10 @@
     <string name="search">खोज</string>
     <string name="menu">मेनू</string>
     <string name="back">वापस</string>
-    <string name="add_favorites">पसंदीदा में जोड़ें</string>
-    <string name="remove_favorites">पसंदीदा से हटाएं</string>
     <string name="wallpaper_success">वॉलपेपर सफलतापूर्वक सेट हो गया!</string>
     <string name="select_language">भाषा चुनें</string>
     <string name="automatic">स्वचालित</string>
     <string name="selected">चयनित</string>
-    <string name="set_wallpaper">वॉलपेपर के रूप में सेट करें</string>
 
     <!-- View Options -->
     <string name="grid_view">ग्रिड दृश्य</string>
@@ -22,12 +19,9 @@
     <string name="view_options">दृश्य विकल्प</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d वनस्पति</item>
-        <item quantity="other">%d वनस्पतियाँ</item>
-    </plurals>
 
-    <string name="use_location_plants">केवल स्थानीय पौधे</string>
+    <string name="location_relevant_items_only">केवल संबंधित आइटम</string>
+    <string name="location_filter_banner">%1$d/%2$d आइटम आपके स्थान के अनुरूप हैं</string>
     <string name="onboarding_title">स्थानीय पौधों की खोज करें</string>
     <string name="onboarding_message">साइड मेनू खोलें और \'केवल स्थानीय पौधे\' को सक्षम करें ताकि आप अपने क्षेत्र में प्राकृतिक रूप से उगने वाले पौधों को देख सकें।</string>
     <string name="onboarding_ok">समझ गए</string>

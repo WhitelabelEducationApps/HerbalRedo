@@ -1,16 +1,19 @@
 package com.herbal.di
 
-import com.herbal.data.models.HeritageSite
-import com.herbal.data.repository.IMuseumRepository
-import com.herbal.presentation.screens.home.HomeViewModel
-import com.herbal.presentation.screens.language.LanguageSelectionViewModel
-import com.herbal.presentation.screens.site.SiteDetailViewModel
+
 import com.whitelabel.core.domain.language.LanguageProvider
+import com.whitelabel.core.domain.repository.ItemRepository
 import com.whitelabel.core.domain.usecase.GetItemDetailUseCase
+import com.whitelabel.core.presentation.detail.ItemDetailViewModel
+import com.whitelabel.core.presentation.home.HomeViewModel
 import com.whitelabel.core.presentation.home.ItemGrouper
+import com.whitelabel.core.presentation.language.LanguageSelectionViewModel
+import com.whitelabel.platform.data.models.CatalogItem
+import com.whitelabel.platform.utils.LocationFilterPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.combine
 import org.koin.dsl.module
 
 val viewModelModule = module {
@@ -23,14 +26,24 @@ val viewModelModule = module {
     // HomeViewModel - Singleton (single instance for the entire app)
     single {
         com.herbal.utils.LOG("DI - Creating HomeViewModel (SINGLETON)")
+        val locationFilter = combine(
+            LocationFilterPreferences.useLocationFilter,
+            LocationFilterPreferences.currentUserZones
+        ) { use, zones ->
+            if (!use || zones.isEmpty()) { _: CatalogItem -> true }
+            else { item: CatalogItem ->
+                item.countries.isEmpty() || item.countries.any { it in zones }
+            }
+        }
         HomeViewModel(
             getItemsUseCase = get(),
             searchItemsUseCase = get(),
             toggleFavoriteUseCase = get(),
-            repository = get<IMuseumRepository>(),
-            itemGrouper = get<ItemGrouper<HeritageSite>>(),
+            repository = get<ItemRepository<CatalogItem>>(),
+            itemGrouper = get<ItemGrouper<CatalogItem>>(),
             languageProvider = get(),
-            coroutineScope = get()
+            coroutineScope = get(),
+            itemFilter = locationFilter
         )
     }
 
@@ -39,11 +52,11 @@ val viewModelModule = module {
     factory { params ->
         val siteId = params.get<Long>()
         com.herbal.utils.LOG("DI - Creating NEW ItemDetailViewModel for siteId=$siteId")
-        SiteDetailViewModel(
+        ItemDetailViewModel<CatalogItem>(
             itemId = siteId,
-            getItemDetailUseCase = get<GetItemDetailUseCase<HeritageSite>>(),
+            getItemDetailUseCase = get<GetItemDetailUseCase<CatalogItem>>(),
             toggleFavoriteUseCase = get(),
-            repository = get<IMuseumRepository>(),
+            repository = get<ItemRepository<CatalogItem>>(),
             wallpaperService = get(),
             languageProvider = get(),
             coroutineScope = get()

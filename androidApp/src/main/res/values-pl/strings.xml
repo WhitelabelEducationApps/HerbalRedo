@@ -7,15 +7,13 @@
     <string name="search">Szukaj</string>
     <string name="menu">Menu</string>
     <string name="back">Wstecz</string>
-    <string name="add_favorites">Dodaj do ulubionych</string>
-    <string name="remove_favorites">Usuń z ulubionych</string>
     <string name="wallpaper_success">Tapeta została pomyślnie ustawiona!</string>
     <string name="select_language">Wybierz Język</string>
     <string name="automatic">Automatyczny</string>
     <string name="selected">Wybrane</string>
-    <string name="set_wallpaper">Ustaw jako Tapetę</string>
 
-    <string name="use_location_plants">Tylko lokalne rośliny</string>
+    <string name="location_relevant_items_only">Tylko odpowiednie elementy</string>
+    <string name="location_filter_banner">%1$d/%2$d elementów pasuje do Twojej lokalizacji</string>
     <string name="onboarding_title">Odkryj lokalne rośliny</string>
     <string name="onboarding_message">Otwórz menu boczne i włącz \'Tylko lokalne rośliny\', aby zobaczyć rośliny rosnące naturalnie w Twoim regionie.</string>
     <string name="onboarding_ok">Rozumiem</string>

@@ -7,13 +7,10 @@
     <string name="search">Căutare</string>
     <string name="menu">Meniu</string>
     <string name="back">Înapoi</string>
-    <string name="add_favorites">Adăugare la favorite</string>
-    <string name="remove_favorites">Eliminare din favorite</string>
     <string name="wallpaper_success">Imagine de fundal setată cu succes!</string>
     <string name="select_language">Selectează Limba</string>
     <string name="automatic">Automat</string>
     <string name="selected">Selectat</string>
-    <string name="set_wallpaper">Setează ca Fundal</string>
 
     <!-- View Options -->
     <string name="grid_view">Vizualizare grilă</string>
@@ -22,12 +19,9 @@
     <string name="view_options">Opțiuni de vizualizare</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d Plantă</item>
-        <item quantity="other">%d Plante</item>
-    </plurals>
 
-    <string name="use_location_plants">Doar plante locale</string>
+    <string name="location_relevant_items_only">Doar elemente relevante</string>
+    <string name="location_filter_banner">%1$d/%2$d articole corespund locației tale</string>
     <string name="onboarding_title">Descoperă plante locale</string>
     <string name="onboarding_message">Deschide meniul lateral și activează \'Doar plante locale\' pentru a vedea plantele care cresc natural în regiunea ta.</string>
     <string name="onboarding_ok">Înțeles</string>

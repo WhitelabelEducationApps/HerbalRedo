@@ -7,13 +7,10 @@
     <string name="search">Поиск</string>
     <string name="menu">Меню</string>
     <string name="back">Назад</string>
-    <string name="add_favorites">Добавить в избранное</string>
-    <string name="remove_favorites">Удалить из избранного</string>
     <string name="wallpaper_success">Обои успешно установлены!</string>
     <string name="select_language">Выберите Язык</string>
     <string name="automatic">Автоматически</string>
     <string name="selected">Выбрано</string>
-    <string name="set_wallpaper">Установить как Обои</string>
 
     <!-- View Options -->
     <string name="grid_view">Просмотр в сетке</string>
@@ -22,12 +19,9 @@
     <string name="view_options">Параметры просмотра</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d Растение</item>
-        <item quantity="other">%d Растений</item>
-    </plurals>
 
-    <string name="use_location_plants">Только местные растения</string>
+    <string name="location_relevant_items_only">Только релевантные элементы</string>
+    <string name="location_filter_banner">%1$d/%2$d элементов соответствует вашему местоположению</string>
     <string name="onboarding_title">Найдите местные растения</string>
     <string name="onboarding_message">Откройте боковое меню и включите \'Только местные растения\', чтобы увидеть растения, растущие в вашем регионе.</string>
     <string name="onboarding_ok">Понятно</string>

@@ -1,16 +1,16 @@
 [versions]
 kotlin = "2.3.21"
-compose = "1.10.3"
+compose = "1.7.3"
 agp = "9.2.0"
 sqldelight = "2.0.1"
 coroutines = "1.8.0"
-lifecycle = "2.7.0"
+lifecycle = "2.8.7"
 activityCompose = "1.8.2"
 navigationCompose = "2.7.7"
-kermit = "2.0.3"
+kermit = "2.0.4"
 coil = "3.0.4"
 ktor = "3.0.1"
-koin = "3.5.3"
+koin = "4.0.0"
 mapsCompose = "4.3.3"
 playServicesMaps = "19.2.0"
 playServicesLocation = "21.3.0"
@@ -42,7 +42,8 @@ ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "kto
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-androidxCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsCompose" }

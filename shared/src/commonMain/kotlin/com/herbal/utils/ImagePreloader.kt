@@ -2,10 +2,9 @@ package com.herbal.utils
 
 import coil3.ImageLoader
 import coil3.PlatformContext
-import com.herbal.data.models.HeritageSite
+import com.whitelabel.platform.data.models.CatalogItem
 import com.whitelabel.platform.utils.debugLogD
 import com.whitelabel.platform.utils.debugLogI
-import com.whitelabel.platform.utils.logImageLoad
 
 private const val TAG = "ImagePreloader"
 
@@ -22,7 +21,7 @@ class ImagePreloader(
     )
 
     suspend fun preloadImages(
-        sites: List<HeritageSite>,
+        sites: List<CatalogItem>,
         currentIndex: Int,
         preloadCount: Int = 15
     ) {
@@ -67,6 +66,3 @@ fun getThumbnailCacheKey(siteId: Long): String {
     return com.whitelabel.platform.utils.getThumbnailCacheKey(siteId, "site")
 }
 
-fun getFullImageCacheKey(siteId: Long): String {
-    return com.whitelabel.platform.utils.getFullImageCacheKey(siteId, "site")
-}

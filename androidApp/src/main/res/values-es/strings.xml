@@ -7,13 +7,10 @@
     <string name="search">Búsqueda</string>
     <string name="menu">Menú</string>
     <string name="back">Atrás</string>
-    <string name="add_favorites">Agregar a favoritos</string>
-    <string name="remove_favorites">Quitar de favoritos</string>
     <string name="wallpaper_success">¡Fondo de pantalla establecido correctamente!</string>
     <string name="select_language">Seleccionar Idioma</string>
     <string name="automatic">Automático</string>
     <string name="selected">Seleccionado</string>
-    <string name="set_wallpaper">Establecer como Fondo</string>
 
     <!-- View Options -->
     <string name="grid_view">Vista en cuadrícula</string>
@@ -22,12 +19,9 @@
     <string name="view_options">Opciones de vista</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d Planta</item>
-        <item quantity="other">%d Plantas</item>
-    </plurals>
 
-    <string name="use_location_plants">Solo plantas locales</string>
+    <string name="location_relevant_items_only">Solo elementos relevantes</string>
+    <string name="location_filter_banner">%1$d/%2$d artículos coinciden con su ubicación</string>
     <string name="onboarding_title">Descubre plantas locales</string>
     <string name="onboarding_message">Abre el menú lateral y activa \'Solo plantas locales\' para ver plantas que crecen de forma nativa en tu región.</string>
     <string name="onboarding_ok">Entendido</string>

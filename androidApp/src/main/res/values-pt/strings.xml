@@ -7,13 +7,10 @@
     <string name="search">Pesquisa</string>
     <string name="menu">Menu</string>
     <string name="back">Voltar</string>
-    <string name="add_favorites">Adicionar aos favoritos</string>
-    <string name="remove_favorites">Remover dos favoritos</string>
     <string name="wallpaper_success">Papel de parede definido com sucesso!</string>
     <string name="select_language">Selecionar Idioma</string>
     <string name="automatic">Automático</string>
     <string name="selected">Selecionado</string>
-    <string name="set_wallpaper">Definir como Papel de Parede</string>
 
     <!-- View Options -->
     <string name="grid_view">Exibição em grade</string>
@@ -22,12 +19,9 @@
     <string name="view_options">Opções de exibição</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d Planta</item>
-        <item quantity="other">%d Plantas</item>
-    </plurals>
 
-    <string name="use_location_plants">Apenas plantas locais</string>
+    <string name="location_relevant_items_only">Apenas itens relevantes</string>
+    <string name="location_filter_banner">%1$d/%2$d itens correspondem à sua localização</string>
     <string name="onboarding_title">Descubra plantas locais</string>
     <string name="onboarding_message">Abra o menu lateral e ative \'Apenas plantas locais\' para ver plantas que crescem nativamente na sua região.</string>
     <string name="onboarding_ok">Entendi</string>

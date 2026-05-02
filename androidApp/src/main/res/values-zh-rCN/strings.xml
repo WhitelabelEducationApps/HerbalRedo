@@ -7,13 +7,10 @@
     <string name="search">搜索</string>
     <string name="menu">菜单</string>
     <string name="back">返回</string>
-    <string name="add_favorites">添加到收藏</string>
-    <string name="remove_favorites">从收藏中移除</string>
     <string name="wallpaper_success">壁纸设置成功！</string>
     <string name="select_language">选择语言</string>
     <string name="automatic">自动</string>
     <string name="selected">已选择</string>
-    <string name="set_wallpaper">设置为壁纸</string>
 
     <!-- View Options -->
     <string name="grid_view">网格视图</string>
@@ -22,12 +19,9 @@
     <string name="view_options">显示选项</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d 植物</item>
-        <item quantity="other">%d 植物</item>
-    </plurals>
 
-    <string name="use_location_plants">仅本地植物</string>
+    <string name="location_relevant_items_only">仅相关物品</string>
+    <string name="location_filter_banner">%1$d/%2$d 件符合您的位置</string>
     <string name="onboarding_title">发现本地植物</string>
     <string name="onboarding_message">打开侧边菜单并启用\'仅本地植物\'，以查看在您所在地区自然生长的植物。</string>
     <string name="onboarding_ok">明白了</string>

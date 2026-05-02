@@ -7,13 +7,10 @@
     <string name="search">بحث</string>
     <string name="menu">القائمة</string>
     <string name="back">رجوع</string>
-    <string name="add_favorites">إضافة للمفضلة</string>
-    <string name="remove_favorites">إزالة من المفضلة</string>
     <string name="wallpaper_success">تم تعيين الخلفية بنجاح!</string>
     <string name="select_language">اختر اللغة</string>
     <string name="automatic">تلقائي</string>
     <string name="selected">محدد</string>
-    <string name="set_wallpaper">تعيين كخلفية</string>
 
     <!-- View Options -->
     <string name="grid_view">عرض الشبكة</string>
@@ -22,12 +19,9 @@
     <string name="view_options">خيارات العرض</string>
 
     <!-- Plant Count -->
-    <plurals name="plant_count">
-        <item quantity="one">%d نبات</item>
-        <item quantity="other">%d نباتات</item>
-    </plurals>
 
-    <string name="use_location_plants">النباتات المحلية فقط</string>
+    <string name="location_relevant_items_only">العناصر ذات الصلة بالموقع فقط</string>
+    <string name="location_filter_banner">%1$d/%2$d عنصر يناسب موقعك</string>
     <string name="onboarding_title">اكتشف النباتات المحلية</string>
     <string name="onboarding_message">افتح القائمة الجانبية وفعّل \'النباتات المحلية فقط\' لرؤية النباتات التي تنمو بشكل طبيعي في منطقتك.</string>
     <string name="onboarding_ok">فهمت</string>

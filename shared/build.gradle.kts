@@ -1,23 +1,12 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.sqldelight)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
 }
 
-compose.resources {
-    publicResClass = false
-    packageOfResClass = "herbalredo.shared.generated.resources"
-    generateResClass = always
-}
-
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
-    }
+    androidTarget()
 
     listOf(
         iosX64(),
@@ -42,7 +31,6 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(compose.materialIconsExtended)
                 implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.sqldelight.coroutines)
                 implementation(libs.kermit)
                 implementation(libs.coil.compose)
                 implementation(libs.coil.network.ktor)
@@ -67,34 +55,22 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                // SQLDelight driver for this app's database
-                implementation(libs.sqldelight.driver.android)
-                // Maps for this app's map view
                 implementation(libs.maps.compose)
                 implementation(libs.play.services.maps)
                 implementation(libs.maps.compose.utils)
-                // Ktor HTTP client
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.ktor.client.logging)
-                // Koin for Android
                 implementation(libs.koin.android)
                 implementation(libs.koin.compose)
-                // Palette API for color extraction
                 implementation("androidx.palette:palette:1.0.0")
-                // DataStore for preferences
                 implementation(libs.androidx.datastore)
-                // Location services for GPS-based plant filtering
                 implementation(libs.play.services.location)
-                // Activity result API for permission launcher
                 implementation(libs.androidx.activity.compose)
             }
         }
 
         val iosMain by creating {
             dependsOn(commonMain)
-            dependencies {
-                implementation(libs.sqldelight.driver.native)
-            }
         }
 
         val iosX64Main by getting { dependsOn(iosMain) }
@@ -119,16 +95,6 @@ android {
     packaging {
         jniLibs {
             useLegacyPackaging = false
-        }
-    }
-}
-
-sqldelight {
-    databases {
-        create("HerbalDatabase") {
-            packageName.set("com.herbal.data.local")
-            schemaOutputDirectory.set(file("src/commonMain/sqldelight/com/herbal/data/local"))
-            version=2
         }
     }
 }

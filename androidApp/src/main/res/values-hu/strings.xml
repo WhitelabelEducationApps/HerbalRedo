@@ -7,15 +7,13 @@
     <string name="search">Keresés</string>
     <string name="menu">Menü</string>
     <string name="back">Vissza</string>
-    <string name="add_favorites">Hozzáadás a kedvencekhez</string>
-    <string name="remove_favorites">Eltávolítás a kedvencekből</string>
     <string name="wallpaper_success">Háttérkép sikeresen beállítva!</string>
     <string name="select_language">Válasszon Nyelvet</string>
     <string name="automatic">Automatikus</string>
     <string name="selected">Kiválasztva</string>
-    <string name="set_wallpaper">Beállítás Háttérképként</string>
 
-    <string name="use_location_plants">Csak helyi növények</string>
+    <string name="location_relevant_items_only">Csak releváns elemek</string>
+    <string name="location_filter_banner">%1$d/%2$d elem megfelel a helyszínének</string>
     <string name="onboarding_title">Fedezd fel a helyi növényeket</string>
     <string name="onboarding_message">Nyisd meg az oldalsó menüt, és engedélyezd a \'Csak helyi növények\' opciót, hogy lásd a területeden természetesen növő növényeket.</string>
     <string name="onboarding_ok">Értem</string>

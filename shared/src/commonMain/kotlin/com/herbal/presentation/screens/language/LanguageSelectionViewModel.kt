@@ -1,5 +1,0 @@
-package com.herbal.presentation.screens.language
-
-import com.whitelabel.core.presentation.language.LanguageSelectionViewModel as CoreLanguageSelectionViewModel
-
-typealias LanguageSelectionViewModel = CoreLanguageSelectionViewModel
